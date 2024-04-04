@@ -10,6 +10,13 @@ const Header = () => {
 
     const [active, setActive] = useState(null);
     const[openDate, setOpenDate] = useState(false);
+    // const [openOptions, setOpenOptions] = useState(false);
+    const [option, setOption] = useState({
+        adult: 1,
+        children: 0,
+        room: 1,
+    })
+    // const [options, setOptions] = useState();
     const [date, setDate] = useState([
         {
             startDate : new Date(),
@@ -21,6 +28,21 @@ const Header = () => {
     const handleClick = (value) =>{
         setActive(value);
     }
+
+
+    const optionCounter = (element, action) =>{
+        setOption((prev)=>
+        {
+            return {
+                ...prev,
+                [element] : action === 'In' ? option[element] + 1 : option[element] - 1,
+            }
+        })
+
+    }
+
+
+    
   return (
     <div className='text-white flex justify-center  relative' style={{ background: '#003580'}}>
         <div className='w-full max-w-[1024px] mt-[20px] ml-[0px]  mb-[100px] mr-[0px]'>
@@ -63,7 +85,36 @@ const Header = () => {
                     </div>
                     <div className='gap-[10px] flex items-center'>
                         <FontAwesomeIcon icon={faPerson} className='' style={{color: 'lightgray'}}/>
-                        <span className=' ' style={{color : 'lightgray'}}>To adult to children ..</span>
+                        <span className=' ' style={{color : 'lightgray'}}>{option.adult} . {option.children} . {option.room}</span>
+                        <div className='absolute top-[50px] text-gray-500 rounded-lg' style={{background: '#f0efef'}}>
+                            <div className='flex justify-between m-[10px]'>
+                                <span className=''>Adult</span>
+                                <div className='flex items-center gap-10 text-xl'>
+                                    <button onClick={() => optionCounter("adult", "De")}className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#003580', border : '1px solid #003580'}}>-</button>
+                                    <span className=''>1</span>
+                                    <button onClick={() => optionCounter("adult", "In")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#003580', border : '1px solid #003580'}}>+</button>
+                                </div>
+                               
+                            </div>
+                            <div className='flex justify-between m-[10px]'>
+                                <span className=''>Children</span>
+                                <div className='flex items-center gap-10 text-xl'>
+                                    <button onClick={()=> optionCounter("children", "De")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#003580', border : '1px solid #003580'}}>-</button>
+                                    <span className=''>1</span>
+                                    <button onClick={()=>optionCounter("children", "In")}className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#003580', border : '1px solid #003580'}}>+</button>
+                                </div>
+                               
+                            </div>
+                            <div className='flex justify-between m-[10px]'>
+                                <span className=''>Room</span>
+                                <div className='flex items-center gap-10 text-xl'>
+                                    <button onClick={()=>optionCounter("room", "De")} className='w-[50px] h-[50px] rounded-lg ' style={{background: '#b8b8b8', color: '#003580', border : '1px solid #003580'}} >-</button>
+                                    <span className=''>1</span>
+                                    <button onClick={()=>optionCounter("room", "In")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#003580', border : '1px solid #003580'}}>+</button>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                     <div className='gap-[10px] flex items-center '>
                         <button className='p-[10px] rounded cursor-pointer' style={{background: '#003580'}}>Search</button>
