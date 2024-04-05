@@ -79,16 +79,16 @@ console.log("test");
                              <input type='text'  placeholder="Where are you going?" className='border-none outline-none	' style={{color :'lightgray'}}/>
      
                          </div>
-                         <div className='gap-[10px] flex items-center'>
+                         <div className='cursor-pointer gap-[10px] flex items-center'>
                              <FontAwesomeIcon icon={faCalendarDay} className='' style={{color: 'lightgray'}}/>
                              <span onClick={()=>setOpenDate(!openDate)} className='' style={{color : 'lightgray'}} > {`${format(date[0].startDate, "MM/dd/yyyy")}`}</span>
-                     { openDate && <DateRange className='top-[50px] absolute' editableDateInputs={true} onChange={(item) => 
+                     { openDate && <DateRange className=' z-[2] top-[50px] absolute cursor-pointer' editableDateInputs={true} onChange={(item) => 
                          setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date}/>}
                          </div>
-                         <div onClick={()=>setOpenOptions(!openOptions)} className='gap-[10px] flex items-center cursor-pointer'>
+                         <div onClick={()=>setOpenOptions(!openOptions)} className=' gap-[10px] flex items-center cursor-pointer'>
                              <FontAwesomeIcon icon={faPerson} className='' style={{color: 'lightgray'}}/>
                              <span className=' ' style={{color : 'lightgray'}}>{option.adult} . {option.children} . {option.room}</span>
-                            {openOptions && <div className='absolute top-[60px] text-gray-500 rounded-lg' style={{background: '#f0efef'}}>
+                            {openOptions && <div className='  z-[2] absolute top-[60px] text-gray-500 rounded-lg' style={{background: '#f0efef'}}>
                                  <div className='flex justify-between m-[10px]'>
                                      <span className=''>Adult</span>
                                      <div className='flex items-center gap-10 text-lg'>

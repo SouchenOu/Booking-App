@@ -1,0 +1,47 @@
+import React from 'react'
+
+const PropertyList = () => {
+  return (
+    <div className='flex w-full max-w-[2000px] justify-between gap-[10px]'>
+        <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>
+            <img className='w-[1800px] h-[200px] object-cover' src="https://img.freepik.com/free-photo/luxury-classic-modern-bedroom-suite-hotel_105762-1787.jpg" alt="Hotels"/>
+            <div className='cursor-pointer'>
+                <h1 className='text-2xl'>Hotels</h1>
+                <h2 className='texl-lg'>233 Hotels</h2>
+            </div>
+        </div>
+        <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>
+            <img className='w-[1800px] h-[200px] object-cover' src="https://www.travaux.com/images/cms/original/ebcd4d3c-6a00-47d2-8165-6d9e192082af.jpeg" alt="Appartements"/>
+            <div className='cursor-pointer'>
+                <h1 className='text-2xl'>Appartements</h1>
+                <h2 className='text-lg'>240 Appartements</h2>
+            </div>
+        </div>
+        <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>
+            <img className='w-[1800px] h-[200px] object-cover' src="https://i.pinimg.com/originals/74/a1/ce/74a1ce39517604d4812123b25e256f0c.jpg" alt="Villas"/>
+            <div className=''>
+                <h1 className='text-2xl'>Villas</h1>
+                <h2 className='text-lg'>100 Villas</h2>
+            </div>
+        </div>
+        <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>
+            <img className='w-[1800px] h-[200px] object-cover' src="https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?cs=srgb&dl=pexels-pixabay-261169.jpg&fm=jpg" alt="Resorts"/>
+            <div className='cursor-pointer'>
+                <h1 className='text-2xl'>Resorts</h1>
+                <h2 className='text-lg'>300 Resorts</h2>
+            </div>
+        </div>
+        <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>
+            <img className='w-[1800px] h-[200px] object-cover' src="https://static.wixstatic.com/media/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg/v1/fill/w_1199,h_800,al_c/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg" alt="Cabins"/>
+            <div className='cursor-pointer'>
+                <h1 className='text-2xl'>Cabins</h1>
+                <h2 className='text-lg'>233 Cabins</h2>
+            </div>
+        </div>
+       
+      
+    </div>
+  )
+}
+
+export default PropertyList
