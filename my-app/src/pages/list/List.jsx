@@ -4,6 +4,7 @@ import Header from '../../components/header/header'
 import { useLocation } from 'react-router-dom'
 import {format} from "date-fns"
 import { DateRange } from 'react-date-range'
+import SearchItem from '../../components/SearchItem/SearchItem'
 
 
 const List = () => {
@@ -18,12 +19,12 @@ const List = () => {
       <Navbar/>
       <Header type="list"/>
       <div className='flex justify-center mt-20'>
-        <div className='w-full max-w-[1024px] flex gap-[50px]'>
-          <div className='flex-[1] p-[50px] rounded-lg sticky' style={{background : 'yellow'}}>
+        <div className='w-full max-w-[2000px] flex gap-[50px]'>
+          <div className='flex-[1] p-[50px] rounded-lg sticky' style={{background : '#A3B4C8'}}>
                 <h1 className='text-2xl mb-[10px] font-bold' style={{color : 'gray'}}>Search</h1>
-                <div className=''>
+                <div className=' flex justify-between'>
                   <label className='text-xl  font-bold'>Destination</label>
-                  <input className='p-[20px] rounded-lg border-solid border-[3px]  border-yellow-300 h-[30px] ' type='text' placeholder={destination}/>
+                  <input className='p-[20px] rounded-lg border-solid border-[3px]  border-gray-300 h-[30px] ' type='text' placeholder={destination}/>
                 </div>
                 <div className='flex flex-col gap-[5px] mb-[10px]'>
                   <label className='text-xl font-bold'>Check-in date</label>
@@ -58,11 +59,18 @@ const List = () => {
             </div>
             
           </div>
-            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{background : '#003580' , color: 'white'}}>Search</button>
+            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{background : '#CC6D3D' , color: 'white'}}>Search</button>
                
           </div>
-          <div className='flex-[3]' style={{background: 'black'}}>
-            <h1>Result</h1>
+          <div className='flex-[3] '>
+            <SearchItem/>
+            <SearchItem/>
+            <SearchItem/>
+            <SearchItem/>
+            <SearchItem/>
+            <SearchItem/>
+            <SearchItem/>
+            <SearchItem/>
 
           </div>
         </div>
