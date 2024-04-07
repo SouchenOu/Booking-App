@@ -20,8 +20,8 @@ const List = () => {
       <Header type="list"/>
       <div className='flex justify-center mt-20'>
         <div className='w-full max-w-[2000px] flex gap-[50px]'>
-          <div className='flex-[1] p-[50px] rounded-lg sticky' style={{background : '#A3B4C8'}}>
-                <h1 className='text-2xl mb-[10px] font-bold' style={{color : 'gray'}}>Search</h1>
+          <div className='flex-[1] p-[50px] rounded-lg sticky' style={{background : '#CC6D3D'}}>
+                <h1 className='text-2xl mb-[10px] font-bold' style={{color : '#A3B4C8'}}>Search</h1>
                 <div className=' flex justify-between'>
                   <label className='text-xl  font-bold'>Destination</label>
                   <input className='p-[20px] rounded-lg border-solid border-[3px]  border-gray-300 h-[30px] ' type='text' placeholder={destination}/>
@@ -35,23 +35,23 @@ const List = () => {
           <div className='flex flex-col gap-[10px]'>
             <label className=''>Options</label>
             <div>
-                  <div className='flex justify-between mb-[10px]' style={{color : 'gray'}}>
+                  <div className='flex justify-between mb-[10px]' style={{color : '#A3B4C8'}}>
                     <span className='text-xl font-bold'>Min price <small>per night</small></span>
                     <input type='number'  className='w-[60px] p-[4px]'/>
                   </div>
-                  <div className='flex justify-between mb-[10px]' style={{color: 'gray'}}>
+                  <div className='flex justify-between mb-[10px]' style={{color: '#A3B4C8'}}>
                     <span className='text-xl font-bold'>Max price <small>per night</small></span>
                     <input type='number' className='w-[60px] p-[4px]'/>
                   </div>
-                  <div className='flex justify-between mb-[10px]' style={{color : 'gray'}}>
+                  <div className='flex justify-between mb-[10px]' style={{color : '#A3B4C8'}}>
                     <span className='text-xl font-bold'>Adult</span>
                     <input type='number' min={1} placeholder={options.adult}  className='w-[60px] p-[4px]'/>
                   </div>
-                  <div className='flex justify-between mb-[10px]' style={{color : 'gray'}}>
+                  <div className='flex justify-between mb-[10px]' style={{color : '#A3B4C8'}}>
                     <span className='text-xl font-bold'>Children</span>
                     <input type='number' min={0} placeholder={options.children}  className='w-[60px] p-[4px]'/>
                   </div>
-                  <div className='flex justify-between mb-[10px]' style={{color : 'gray'}}>
+                  <div className='flex justify-between mb-[10px]' style={{color : '#A3B4C8'}}>
                     <span className='text-xl font-bold'>Room</span>
                     <input type='number' min={1} placeholder={options.room}  className='w-[60px] p-[4px]'/>
                   </div>
@@ -59,7 +59,7 @@ const List = () => {
             </div>
             
           </div>
-            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{background : '#CC6D3D' , color: 'white'}}>Search</button>
+            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{background : '#022E51' , color: 'white'}}>Search</button>
                
           </div>
           <div className='flex-[3] '>
