@@ -6,8 +6,11 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import {format} from "date-fns"
 
+import {useNavigate} from 'react-router-dom'
+
 const Header = ({type}) => {
 
+    const [destination, setDestination] = useState("")
     const [active, setActive] = useState(null);
     const[openDate, setOpenDate] = useState(false);
     const [openOptions, setOpenOptions] = useState(false);
@@ -41,8 +44,12 @@ const Header = ({type}) => {
 
     }
 
-console.log("test");
-    
+    const navigate = useNavigate();
+
+    const handleSearch = () =>{
+        navigate('/hotels' ,{state: {destination,date,option}});
+
+    } 
   return (
     <div className='text-white flex justify-center  relative' style={{ background: '#003580'}}>
         <div className={ type === 'list' ? `w-full max-w-[1024px] mt-[20px] ml-[0px]  mb-[0px] mr-[0px]` : `w-full max-w-[1024px] mt-[20px] ml-[0px]  mb-[100px] mr-[0px]`}>
@@ -76,14 +83,14 @@ console.log("test");
                      <div className='h-[30px] flex items-center justify-between border-solid border-[3px]  border-yellow-300  p-6 rounded-lg absolute bottom-[-25px] w-full max-w-[1024px]' style={{background:'#fff'}} >
                          <div className='gap-[10px] flex items-center' >
                              <FontAwesomeIcon icon={faBed} className='' style={{color: 'lightgray'}}/>
-                             <input type='text'  placeholder="Where are you going?" className='border-none outline-none	' style={{color :'lightgray'}}/>
+                             <input onChange={(e) => setDestination(e.target.value)}type='text'  placeholder="Where are you going?" className='border-none outline-none	' style={{color :'lightgray'}}/>
      
                          </div>
                          <div className='cursor-pointer gap-[10px] flex items-center'>
                              <FontAwesomeIcon icon={faCalendarDay} className='' style={{color: 'lightgray'}}/>
                              <span onClick={()=>setOpenDate(!openDate)} className='' style={{color : 'lightgray'}} > {`${format(date[0].startDate, "MM/dd/yyyy")}`}</span>
                      { openDate && <DateRange className=' z-[2] top-[50px] absolute cursor-pointer' editableDateInputs={true} onChange={(item) => 
-                         setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date}/>}
+                         setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} minDate={new Date()}/>}
                          </div>
                          <div onClick={()=>setOpenOptions(!openOptions)} className=' gap-[10px] flex items-center cursor-pointer'>
                              <FontAwesomeIcon icon={faPerson} className='' style={{color: 'lightgray'}}/>
@@ -119,7 +126,7 @@ console.log("test");
                              </div>} 
                          </div>
                          <div className='gap-[10px] flex items-center '>
-                             <button className='p-[10px] rounded cursor-pointer' style={{background: '#003580'}}>Search</button>
+                             <button className='p-[10px] rounded cursor-pointer' style={{background: '#003580'}} onClick={handleSearch}>Search</button>
                          </div>
                      </div>
                     
