@@ -13,7 +13,17 @@ const SearchItem = () => {
             <span className='text-xl font-extrabold' style={{color : '#53759c'}}> Free cancellation</span>
             <span className='text-l' style={{color : '#53759c'}}>You can cancel later, so look in this greate price today</span>
         </div>
-        <div className='flex-[1]'>details</div>
+        <div className='flex-[1] flex flex-col justify-between'>
+            <div className='flex justify-between'>
+                <span className='text-2xl'>Excelent</span>
+                <button className='text-white p-[8px] font-bold border-none' style={{background : '#022E51'}}>8.9</button>
+            </div>
+            <div className='flex flex-col gap-[5px] text-right'>
+                <span className='text-2xl font-normal'>123$</span>
+                <span className='text-xl font-semibold' style={{color : 'gray'}}>Includes taxes and fees</span>
+                <button className='text-white text-2xl font-bold p-[10px] border-none rounded-lg cursor-pointer' style={{background : '#022E51'}}>See availabality</button>
+            </div>
+        </div>
       
     </div>
   )
