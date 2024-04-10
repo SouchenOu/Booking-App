@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/SearchItem/SearchItem';
+import MailList from '../../components/mailList/MailList';
+import Footer from '../../components/footer/Footer';
 
 const List = () => {
   const location = useLocation();
@@ -13,12 +15,13 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.option);
   const [openDate, setOpenDate] = useState(false);
+  
 
   return (
     <div>
       <Navbar />
       <Header type="list" />
-      <div className='flex justify-center mt-[20px]'>
+      <div className='flex flex-col items-center mt-[20px]'>
         <div className='w-full max-w-[2000px] flex gap-[50px]'>
           <div className='flex-[1] p-[50px] rounded-lg sticky' style={{ background: '#CC6D3D', maxHeight: '80vh', overflowY: 'auto' }}>
             <h1 className='text-2xl mb-[10px] font-bold' style={{ color: '#A3B4C8' }}>Search</h1>
@@ -69,7 +72,13 @@ const List = () => {
             <SearchItem />
           </div>
         </div>
+        <MailList/>
+        <div className='mt-[20px]'>
+          <Footer/>
+
+        </div>
       </div>
+        
     </div>
   );
 };
