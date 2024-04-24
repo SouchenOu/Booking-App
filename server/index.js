@@ -35,6 +35,9 @@ mongoose.connection.on("connected", ()=>{
 
 /*****This is middleWares */
 
+
+app.use(express.json());
+
 app.use("/auth", authRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);

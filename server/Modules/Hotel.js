@@ -25,17 +25,22 @@ const HotelSchema = new mongoose.Schema({
     },
     photos :{
         type : [String],
+    },
+    desc :{
+        type : String,
+        required : true,
+    },
+    title :{
+        type : String,
         required : true,
     },
     rating :{
         type : String,
         min: 0,
         max: 5,
-        required : true,
     },
     rooms :{
         type : [String],
-        required : true,
     },
     cheapestPrice:{
         type : Number,
@@ -43,9 +48,8 @@ const HotelSchema = new mongoose.Schema({
     },
     featured:{
         type : Boolean,
-        required : true,
     },
 })
 
 
-export default mongoose.module("Hotel", HotelSchema);
+export default mongoose.model("Hotel", HotelSchema);
