@@ -38,6 +38,11 @@ mongoose.connection.on("connected", ()=>{
 
 app.use(express.json());
 
+// app.use((err, req, res, next)=>{
+//     console.log("errr here");
+//     return res.status(500).json("Hello error from handler");
+// })
+
 app.use("/auth", authRoute);
 app.use("/hotels", hotelsRoute);
 app.use("/rooms", roomsRoute);
