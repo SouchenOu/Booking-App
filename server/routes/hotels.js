@@ -1,6 +1,7 @@
 import express from "express"
 import Hotel from "../Modules/Hotel.js";
 import { DeleteHotel, UpdateHotel, createHotel, getAllHotels, getHotel } from "../controllers/hotel.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 
 const router = express.Router();
@@ -23,7 +24,7 @@ const router = express.Router();
 //     }
 // })
 
-router.post("/", createHotel);
+router.post("/",verifyAdmin, createHotel);
 
 /********Update the hotel */
 
@@ -44,7 +45,7 @@ router.post("/", createHotel);
 
 // })
 
-router.put('/:id', UpdateHotel);
+router.put('/:id',verifyAdmin, UpdateHotel);
 
 /********Delete request *****/
 
@@ -58,7 +59,7 @@ router.put('/:id', UpdateHotel);
 
 //     }
 // })
-router.delete('/', DeleteHotel);
+router.delete('/', verifyAdmin, DeleteHotel);
 
 /*********Get all hotels****** */
 // router.get('/:id', async(req, res, next)=>{
@@ -72,7 +73,7 @@ router.delete('/', DeleteHotel);
 //     }
 
 // })
-router.get('/:id', getHotel);
+router.get('/:id',verifyAdmin, getHotel);
 
 /*********Find all hotels******/
 
@@ -87,6 +88,6 @@ router.get('/:id', getHotel);
 // })
 
 
-router.get("/", getAllHotels);
+router.get("/", verifyAdmin, getAllHotels);
 /************ */
 export default router;

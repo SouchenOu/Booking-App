@@ -16,8 +16,9 @@ export const createHotel = async (req, res, next) =>{
 }
 
 export const UpdateHotel = async (req, res, next) =>{
-    
+    console.log("update here !!");
     try{
+       
         const updateHotel = await Hotel.findByIdAndUpdate(req.params.id, { $set : req.body});
         //we do this one if we want to see the new result we add -->({new : true})
         // const updateHotel = await Hotel.findByIdAndUpdate(req.params.id, { $set : req.body}, {new: true});
