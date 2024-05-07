@@ -5,28 +5,28 @@ const {Schema} = mongoose;
 
 const Roomschema = new mongoose.Schema({
     
-    username : {
-        type : String,
-        required : true,
-        unique : true,
-    },
-    email : {
+    title : {
         type : String,
         required : true,
         unique : true, 
-    },
-    password :{
-        type : String,
-        required : true,
-        unique : true,
 
     },
-    isAdmin : {
-        type : Boolean,
+    price : {
+        type : Number,
+        required : true,
+    },
+    MaxPoeple : {
+        type : Number,
         required : true,
 
         // default : false,
-    }
+    },
+    desc :{
+        type : String,
+        required : true,
+
+    },
+    roomNumbers : [{number : Number, unavailableDates : {type : [Date]}}]
 
 },
         {timestamps : true}
