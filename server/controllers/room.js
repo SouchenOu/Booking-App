@@ -11,8 +11,8 @@ export const createRoom = async( req, res, next) =>{
     console.log("hotelId-->", hotelId);
     const newRoom = new Rooms(req.body);
    // find if there is a room that have the same id
-   const { name } = req.body;
-   const existingRoom = await Rooms.findOne({ name });
+   const { title } = req.body;
+   const existingRoom = await Rooms.findOne({ title });
    if (existingRoom) {
         // If a room with the same name exists, return an error
         return res.status(400).json({ error: 'Room with the same name already exists' });
@@ -57,8 +57,7 @@ export const DeleteRoom = async (req, res, next) =>{
         await Rooms.findByIdAndDelete(req.params.id);
         res.status(200).json("Room has been deleted");
         try{
-            await Hotel.findByIdAndDelete(HotelId, {$pull : {rooms : req.params.id}});
-
+            await Hotel.findByIdAndUpdate(HotelId, {$pull : {rooms : req.params.id}});
         }catch(err){
             
         }
