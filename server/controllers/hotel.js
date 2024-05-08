@@ -49,6 +49,29 @@ export const countByCity = async (req, res, next) =>{
     }
 }
 
+// how much of hotels , apartement, resort, villa and cabine there is ..
+
+export const countByType = async (req, res,next) =>{
+   try{
+            const hotelCount = await Hotel.countDocuments({type: "hotel"});
+            const apartementCount = await Hotel.countDocuments({type: "apartement"});
+            const resortCount = await Hotel.countDocuments({type: "resort"});
+            const villaCount = await Hotel.countDocuments({type: "villa"});
+            const cabinCount = await Hotel.countDocuments({type: "cabin"});
+            res.status(200).json([
+                {type : "hotel", count : hotelCount},
+                {type: "apartement", count : apartementCount},
+                {type :"resort", count : resortCount},
+                {type: "villa", count: villaCount},
+                {type :"cabin", count: cabinCount}
+
+            ]);
+   }catch(err)
+   {
+        next(err);
+   }
+}
+
 
 export const DeleteHotel = async (req, res, next) =>{
     try{
@@ -71,6 +94,20 @@ export const getHotel = async (req, res, next) =>{
          res.status(500).json(err);
          // next(err);
      }
+}
+
+// get just featured hotels
+
+export const getFeaturesHotel = async (req, res, next) =>{
+    try{
+        console.log("heree!");
+        const featured = await Hotel.find(req.query);
+        console.log("featured-->", featured);
+        res.status(200).json(featured);
+    }catch(err){
+        res.status(500).json(err);
+
+    }
 }
 
 export const getAllHotels = async (req, res, next) =>{

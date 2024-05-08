@@ -1,13 +1,16 @@
 import React from 'react'
+import useFetch from '../../hooks/useFetch'
 
 const FeaturesProperties = () => {
+    const {data, loading, error} = useFetch("http://localhost:8000/hotels/features?featured=true");
+    console.log("data featuress-->", data);
   return (
     <div className='flex w-full max-w-[1024px] gap-[20px] justify-between'>
         <div className='gap-[10px] flex flex-col'>
             <img className=''  src="https://cdn.generationvoyage.fr/2023/07/hotels-luxe-agadir-630x421.jpg" alt=""/>
-            <span className='font-bold'>ApartHotel stare Miasto</span>
-            <span className='font-normal'>Madrid</span>
-            <span className='font-medium'>Starting from 120$</span>
+            <span className='font-bold'>{data[0]?.name}</span>
+            <span className='font-normal'>{data[0]?.city}</span>
+            <span className='font-medium'>Starting from {data[0]?.cheapestPrice}$</span>
             <div className=''>
                 <button className="p-[6px] mr-[10px] font-bold text-white rounded cursor-pointer" style={{background : '#003580'}} >8.9</button>
                 <span className='text-lg'>Excelent</span>
@@ -16,9 +19,9 @@ const FeaturesProperties = () => {
         </div>
         <div className='gap-[10px] flex flex-col'>
             <img className='' src="https://cdn.generationvoyage.fr/2023/07/hotels-luxe-agadir-630x421.jpg" alt=""/>
-            <span className='font-bold'>ApartHotel stare Miasto</span>
-            <span className='font-normal'>Madrid</span>
-            <span className='font-medium'>Starting from 120$</span>
+            <span className='font-bold'>{data[1]?.name}</span>
+            <span className='font-normal'>{data[1]?.city}</span>
+            <span className='font-medium'>Starting from {data[1]?.cheapestPrice}$</span>
             <div className='gap-[2px]'>
                 <button className="p-[6px] mr-[10px] font-bold text-white rounded cursor-pointer" style={{background : '#003580'}} >8.9</button>
                 <span className='text-lg'>Excelent</span>
@@ -27,9 +30,9 @@ const FeaturesProperties = () => {
         </div>
         <div className='gap-[10px] flex flex-col'>
             <img className='' src="https://cdn.generationvoyage.fr/2023/07/hotels-luxe-agadir-630x421.jpg" alt=""/>
-            <span className='font-bold'>ApartHotel stare Miasto</span>
-            <span className='font-normal'>Madrid</span>
-            <span className='font-medium'>Starting from 120$</span>
+            <span className='font-bold'>{data[2]?.name}</span>
+            <span className='font-normal'>{data[2]?.city}</span>
+            <span className='font-medium'>Starting from {data[2]?.cheapestPrice}$</span>
             <div className='gap-[2px]'>
                 <button className="p-[6px] mr-[10px] font-bold text-white rounded cursor-pointer" style={{background : '#003580'}} >8.9</button>
                 <span className='text-lg'>Excelent</span>

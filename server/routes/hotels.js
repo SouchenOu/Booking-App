@@ -1,6 +1,6 @@
 import express from "express"
 import Hotel from "../Modules/Hotel.js";
-import { DeleteHotel, UpdateHotel, countByCity, createHotel, getAllHotels, getHotel } from "../controllers/hotel.js";
+import { DeleteHotel, UpdateHotel, countByCity, countByType, createHotel, getAllHotels, getFeaturesHotel, getHotel } from "../controllers/hotel.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 
@@ -74,6 +74,7 @@ router.delete('/', verifyAdmin, DeleteHotel);
 
 // })
 router.get('find/:id',verifyAdmin, getHotel);
+router.get('/features', getFeaturesHotel);
 
 /*********Find all hotels******/
 
@@ -90,5 +91,6 @@ router.get('find/:id',verifyAdmin, getHotel);
 
 router.get("/", verifyAdmin, getAllHotels);
 router.get("/countByCity", countByCity);
+router.get("/countByType", countByType);
 /************ */
 export default router;
