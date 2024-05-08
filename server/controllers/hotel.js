@@ -34,6 +34,22 @@ export const UpdateHotel = async (req, res, next) =>{
 }
 
 
+// how much of hotels in each city !
+export const countByCity = async (req, res, next) =>{
+    const Cities = req.query.cities.split(',');
+
+    try{
+        const list = await Promise.all(Cities.map(city=>{
+            return Hotel.countDocuments({city:city});
+        }));
+        res.status(200).json(list);
+    }catch(err){
+        next(err);
+
+    }
+}
+
+
 export const DeleteHotel = async (req, res, next) =>{
     try{
         await Hotel.findByIdAndDelete(req.params.id);
