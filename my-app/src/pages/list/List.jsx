@@ -7,6 +7,7 @@ import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/SearchItem/SearchItem';
 import MailList from '../../components/mailList/MailList';
 import Footer from '../../components/footer/Footer';
+import useFetch from '../../hooks/useFetch';
 
 const List = () => {
   const location = useLocation();
@@ -15,6 +16,10 @@ const List = () => {
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.option);
   const [openDate, setOpenDate] = useState(false);
+  console.log("destination here-->", destination);
+
+  const {data, loading , error} = useFetch(`http://localhost:8000/hotels/cities?city=${destination}`);
+  console.log("data in list-->", data);
   
 
   return (
@@ -62,14 +67,22 @@ const List = () => {
             <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{ background: '#022E51', color: 'white' }}>Search</button>
           </div>
           <div className='flex-[3]' style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+            {/* <SearchItem />
             <SearchItem />
             <SearchItem />
             <SearchItem />
             <SearchItem />
             <SearchItem />
             <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            <SearchItem /> */}
+            {
+              loading ? ("loading..") : (<>
+              {data.map(elem =>(
+                  <SearchItem elem={elem} key={elem.key}/>
+
+              ))}
+              </>)
+            }
           </div>
         </div>
         <MailList/>

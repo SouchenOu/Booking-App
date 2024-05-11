@@ -119,3 +119,20 @@ export const getAllHotels = async (req, res, next) =>{
         // next(err);
     }
 }
+
+
+
+export const getHotels = async (req, res, next) => {
+    console.log("backend all hotels");
+    const { city, min, max, ...others } = req.query; // Include city in the destructuring
+    try {
+      const hotels = await Hotel.find({
+        ...others,
+        city: city, // Use the city parameter in the query
+        cheapestPrice: { $gt: min | 1, $lt: max || 999 },
+      }).limit(req.query.limit);
+      res.status(200).json(hotels);
+    } catch (err) {
+      next(err);
+    }
+  };

@@ -7,12 +7,14 @@ const useFetch = (url) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     useEffect(()=>{
+        console.log("whyyyy!")
         const fetchData = async () =>{
             console.log("enter function");
             setLoading(true);
             try{
                 console.log("after url", url);
                 const response  = await axios.get(url);
+                console.log("just response here-->", response);
                 console.log("response-->", response.data);
                 setData(response.data);
 
