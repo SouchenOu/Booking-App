@@ -28,12 +28,14 @@ export const register = async (req, res, next) =>{
 }
 
 export const login = async (req, res, next) => {
+    console.log("enter to login");
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
     try{
         // first : check if there is a user wit this username
         const user = await Users.findOne({username: req.body.username});
-        if(!user) return res.status(401).json("wrong username");
+        console.log("user body", req.body.username);
+        if(!user) return res.status(401).json("wrong username, SignUp please!");
         //then if all good we should compare the password
         const comparePassword = await bcrypt.compare(req.body.password, user.password);
 
