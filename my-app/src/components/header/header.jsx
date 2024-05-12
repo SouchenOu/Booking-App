@@ -1,26 +1,27 @@
 import { faBed, faCalendarDay, faCar, faPerson, faPlane, faTaxi } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {DateRange} from "react-date-range"
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import {format} from "date-fns"
 
 import {useNavigate} from 'react-router-dom'
+import { SearchContext } from '../../context/SearchContext'
 
 const Header = ({type}) => {
 
-    const [destination, setDestination] = useState("")
+    const [destination, setDestination] = useState("");
     const [active, setActive] = useState(null);
     const[openDate, setOpenDate] = useState(false);
     const [openOptions, setOpenOptions] = useState(false);
-    const [option, setOption] = useState({
+    const [options, setOptions] = useState({
         adult: 1,
         children: 0,
         room: 1,
     })
     // const [options, setOptions] = useState();
-    const [date, setDate] = useState([
+    const [dates, setDates] = useState([
         {
             startDate : new Date(),
             endDate : new Date(),
@@ -28,17 +29,19 @@ const Header = ({type}) => {
         }
     ]);
 
+    const {dispatch} = useContext(SearchContext);
+
     const handleClick = (value) =>{
         setActive(value);
     }
 
 
     const optionCounter = (element, action) =>{
-        setOption((prev)=>
+        setOptions((prev)=>
         {
             return {
                 ...prev,
-                [element] : action === 'In' ? option[element] + 1 : option[element] - 1,
+                [element] : action === 'In' ? options[element] + 1 : options[element] - 1,
             }
         })
 
@@ -47,7 +50,9 @@ const Header = ({type}) => {
     const navigate = useNavigate();
 
     const handleSearch = () =>{
-        navigate('/hotels' ,{state: {destination,date,option}});
+        dispatch({type : "NEW_SEARCH", payload: {destination, dates, options}})
+        navigate('/hotels' ,{state: {destination,dates,options}});
+
 
     } 
   return (
@@ -88,19 +93,19 @@ const Header = ({type}) => {
                          </div>
                          <div className='cursor-pointer gap-[10px] flex items-center'>
                              <FontAwesomeIcon icon={faCalendarDay} className='' style={{color: 'lightgray'}}/>
-                             <span onClick={()=>setOpenDate(!openDate)} className='' style={{color : 'lightgray'}} > {`${format(date[0].startDate, "MM/dd/yyyy")}`}</span>
+                             <span onClick={()=>setOpenDate(!openDate)} className='' style={{color : 'lightgray'}} > {`${format(dates[0].startDate, "MM/dd/yyyy")}`}</span>
                      { openDate && <DateRange className=' z-[2] top-[50px] absolute cursor-pointer' editableDateInputs={true} onChange={(item) => 
-                         setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} minDate={new Date()}/>}
+                         setDates([item.selection])} moveRangeOnFirstSelection={false} ranges={dates} minDate={new Date()}/>}
                          </div>
                          <div onClick={()=>setOpenOptions(!openOptions)} className=' gap-[10px] flex items-center cursor-pointer'>
                              <FontAwesomeIcon icon={faPerson} className='' style={{color: 'lightgray'}}/>
-                             <span className=' ' style={{color : 'lightgray'}}>{option.adult} . {option.children} . {option.room}</span>
+                             <span className=' ' style={{color : 'lightgray'}}>{options.adult} . {options.children} . {options.room}</span>
                             {openOptions && <div className='  z-[2] absolute top-[60px] text-gray-500 rounded-lg' style={{background: '#f0efef'}}>
                                  <div className='flex justify-between m-[10px]'>
                                      <span className=''>Adult</span>
                                      <div className='flex items-center gap-10 text-lg'>
-                                         <button disabled={option.children <= '1'} onClick={() => optionCounter("adult", "De")}className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>-</button>
-                                         <span className=''>{option.adult}</span>
+                                         <button disabled={options.children <= '1'} onClick={() => optionCounter("adult", "De")}className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>-</button>
+                                         <span className=''>{options.adult}</span>
                                          <button onClick={() => optionCounter("adult", "In")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>+</button>
                                      </div>
                                     
@@ -108,8 +113,8 @@ const Header = ({type}) => {
                                  <div className='flex justify-between gap-10 m-[10px]'>
                                      <span className=''>Children</span>
                                      <div className='flex items-center gap-10 text-lg'>
-                                         <button disabled={option.children <= '1'} onClick={()=> optionCounter("children", "De")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>-</button>
-                                         <span className=''>{option.children}</span>
+                                         <button disabled={options.children <= '1'} onClick={()=> optionCounter("children", "De")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>-</button>
+                                         <span className=''>{options.children}</span>
                                          <button onClick={()=>optionCounter("children", "In")}className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>+</button>
                                      </div>
                                     
@@ -117,8 +122,8 @@ const Header = ({type}) => {
                                  <div className='flex justify-between m-[10px]'>
                                      <span className=''>Room</span>
                                      <div className='flex items-center gap-10 text-lg'>
-                                         <button disabled={option.children <= '1'} onClick={()=>optionCounter("room", "De")} className='w-[50px] h-[50px] rounded-lg ' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}} >-</button>
-                                         <span className=''>{option.room}</span>
+                                         <button disabled={options.children <= '1'} onClick={()=>optionCounter("room", "De")} className='w-[50px] h-[50px] rounded-lg ' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}} >-</button>
+                                         <span className=''>{options.room}</span>
                                          <button onClick={()=>optionCounter("room", "In")} className='w-[50px] h-[50px] rounded-lg' style={{background: '#b8b8b8', color: '#022E51', border : '1px solid #022E51'}}>+</button>
                                      </div>
                                      

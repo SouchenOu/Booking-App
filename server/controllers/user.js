@@ -42,11 +42,8 @@ export const getUser = async (req, res) =>{
 }
 
 export const getAllUsers = async (req, res) =>{
-    console.log("enter here");
     try{
-        console.log("yesss");
         const Allusers =  await Users.find();
-        console.log("users here-->". Allusers);
         res.status(200).json(Allusers);
     }catch(err){
         res.status(500).json(err);

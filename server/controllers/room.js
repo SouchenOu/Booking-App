@@ -8,7 +8,6 @@ export const createRoom = async( req, res, next) =>{
     const checkHotel = await Hotel.findById(hotelId);
     if(!checkHotel)
     return res.status(400).json("This hotel not found");
-    console.log("hotelId-->", hotelId);
     const newRoom = new Rooms(req.body);
    // find if there is a room that have the same id
    const { title } = req.body;
@@ -34,7 +33,6 @@ export const createRoom = async( req, res, next) =>{
 }
 
 export const UpdateRoom = async (req, res, next) =>{
-    console.log("update here !!");
     try{
         const updateRoom = await Rooms.findByIdAndUpdate(req.params.id, { $set : req.body});
         //we do this one if we want to see the new result we add -->({new : true})

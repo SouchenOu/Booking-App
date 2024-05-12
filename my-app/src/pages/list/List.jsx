@@ -11,15 +11,17 @@ import useFetch from '../../hooks/useFetch';
 
 const List = () => {
   const location = useLocation();
-  console.log('location here-->', location);
   const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
-  const [options, setOptions] = useState(location.state.option);
+  const [dates, setDates] = useState(location.state.dates);
+  const [options, setOptions] = useState(location.state.options);
   const [openDate, setOpenDate] = useState(false);
-  console.log("destination here-->", destination);
+  const [max, setMax] = useState(undefined);
+  const [min, setMin] = useState(undefined);
 
-  const {data, loading , error} = useFetch(`http://localhost:8000/hotels/cities?city=${destination}`);
-  console.log("data in list-->", data);
+  const {data, loading , error, reFetch} = useFetch(`http://localhost:8000/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
+  const handleClick = () =>{
+    // reFetch();
+  }
   
 
   return (
@@ -36,19 +38,19 @@ const List = () => {
             </div>
             <div className='flex flex-col gap-[5px] mb-[10px]'>
               <label className='text-xl font-bold'>Check-in date</label>
-              <span onClick={() => setOpenDate(!openDate)} style={{ background: '#fff' }} className=' p-[20px] justify-center cursor-pointer border-none border-[3px] border-red-300'>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
-              {openDate && <DateRange onChange={(item) => setDate([item.selection])} minDate={new Date()} ranges={date} />}
+              <span onClick={() => setOpenDate(!openDate)} style={{ background: '#fff' }} className=' p-[20px] justify-center cursor-pointer border-none border-[3px] border-red-300'>{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
+              {openDate && <DateRange onChange={(item) => setDates([item.selection])} minDate={new Date()} ranges={dates} />}
             </div>
             <div className='flex flex-col gap-[10px]'>
               <label className=''>Options</label>
               <div>
                 <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
                   <span className='text-xl font-bold'>Min price <small>per night</small></span>
-                  <input type='number' className='w-[60px] p-[4px]' />
+                  <input type='number' className='w-[60px] p-[4px]' onChange={e=>setMin(e.target.value)}  />
                 </div>
                 <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
                   <span className='text-xl font-bold'>Max price <small>per night</small></span>
-                  <input type='number' className='w-[60px] p-[4px]' />
+                  <input type='number' onChange={e=>setMax(e.target.value)} className='w-[60px] p-[4px]' />
                 </div>
                 <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
                   <span className='text-xl font-bold'>Adult</span>
@@ -64,7 +66,7 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{ background: '#022E51', color: 'white' }}>Search</button>
+            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{ background: '#022E51', color: 'white' }} onClick={handleClick()}>Search</button>
           </div>
           <div className='flex-[3]' style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
             {/* <SearchItem />

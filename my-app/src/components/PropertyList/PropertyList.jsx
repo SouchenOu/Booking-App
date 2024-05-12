@@ -3,7 +3,6 @@ import useFetch from '../../hooks/useFetch'
 
 const PropertyList = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/hotels/countByType");
-    console.log("data here propertyList-->", data);
   return (
     <div className='flex w-full max-w-[2000px] justify-between gap-[10px]'>
         { loading ? ('loading...' ) : (

@@ -1,14 +1,33 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Navbar from '../../components/navbar/navbar'
 import Header from '../../components/header/header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
+import { useLocation } from 'react-router-dom'
+import useFetch from '../../hooks/useFetch'
+import { SearchContext } from '../../context/SearchContext'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
+  const location = useLocation();
+  const id = location.pathname.split("/");
+  const idFinal = id[2];
+  const {data, loading, error} = useFetch(`http://localhost:8000/hotels/find/${idFinal}`);
   const [open , setOpen] = useState(false);
+  const {dates, options} = useContext(SearchContext);
+  console.log("dates here-->", dates);
+  const MILISECOND_PERdAYS = 1000 *60 * 60 * 24;
+  const calculeDayDifference = (date1, date2) => {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const diffDay = Math.ceil(timeDiff / MILISECOND_PERdAYS);
+    return diffDay;
+  }
+
+  const days = calculeDayDifference(dates[0].endDate, dates[0].startDate );
+  console.log("days in hotels-->", days);
+
   const pictures = [
     {
       src: "https://www.bordeaux-tourisme.com/sites/bordeaux_tourisme/files/styles/large/public/medias/widgets/misc/Burdigala%20H%C3%B4tel%20Inwood%20Bordeaux.jpg.webp?itok=oNrQn0N_"
@@ -86,13 +105,13 @@ const Hotel = () => {
           </div>}
         <div className='w-full w-max-[1000px] flex flex-col gap-[20px]'>
           <button className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[200px] borded-none rounded-lg ' style={{background: '#022E51'}}>Reserve or book now</button>
-          <h1 className='text-2xl'>Grand hotel</h1>
+          <h1 className='text-2xl'>{data.name}</h1>
           <div className='flex gap-[4px] items-center'>
             <FontAwesomeIcon icon={faLocationDot}/>
             <span className='text-xl'>Elton St 125 New york</span>
           </div>
           <span className='text-xl font-bold' style={{color : '#B74803'}}>Excelent location -500m from center</span>
-          <span className='text-xl' style={{color : 'green'}}>Book a stay over $117 at this property and get a free airport taxi</span>
+          <span className='text-xl' style={{color : 'green'}}>{data.desc} Book a stay over $117 at this property and get a free airport taxi</span>
           <div className='flex gap-[10px]  flex-wrap '>
             {pictures.map((elem, index)=>(
               <div>
@@ -114,9 +133,9 @@ const Hotel = () => {
                   At the end of a stairway across from the hotel, the white pebbles on the beach of Isola Bella await you as well as beach facilities with lounge chairs and umbrellas and areas with free access to the pristine clear sea that becomes deep just a few metres from the shore.</p>
             </div>
             <div className='flex-[1] p-[20px] flex flex-col gap-[10px]' style={{background : '#A3B4C8'}}>
-              <h1 className='text-2xl font-bold' style={{color  : '#CC6D3D'}}>Perfect for a 9 night stay</h1>
+              <h1 className='text-2xl font-bold' style={{color  : '#CC6D3D'}}>Perfect for a {days} night stay</h1>
               <span className='text-xl'>Located in real heart of krakow, this property has an excelent location score of 9.8 ! </span>
-              <h2 className='text-xl font-bold '> 925$ 9 nights</h2>
+              <h2 className='text-xl font-bold '> ${days * data.cheapestPrice * options.room} {days} nights</h2>
               <button className='text-white text-xl font-extrabold rounded-lg border-none border-[3px] border-gray-500 p-[9px]' style={{background : '#022E51'}}>Reserve or book now</button>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import express from "express"
 import Hotel from "../Modules/Hotel.js";
-import { DeleteHotel, UpdateHotel, countByCity, countByType, createHotel, getAllHotels, getFeaturesHotel, getHotel, getHotels } from "../controllers/hotel.js";
+import { DeleteHotel, UpdateHotel, countByCity, countByType, createHotel, getHotels, getFeaturesHotel, getHotel} from "../controllers/hotel.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 
@@ -59,7 +59,7 @@ router.put('/:id',verifyAdmin, UpdateHotel);
 
 //     }
 // })
-router.delete('/', verifyAdmin, DeleteHotel);
+router.delete('/:id', verifyAdmin, DeleteHotel);
 
 /*********Get all hotels****** */
 // router.get('/:id', async(req, res, next)=>{
@@ -73,7 +73,7 @@ router.delete('/', verifyAdmin, DeleteHotel);
 //     }
 
 // })
-router.get('find/:id',verifyAdmin, getHotel);
+router.get('/find/:id',  getHotel);
 router.get('/features', getFeaturesHotel);
 
 /*********Find all hotels******/
@@ -89,7 +89,7 @@ router.get('/features', getFeaturesHotel);
 // })
 
 
-router.get("/cities", getHotels);
+router.get("/", getHotels);
 router.get("/countByCity", countByCity);
 router.get("/countByType", countByType);
 /************ */

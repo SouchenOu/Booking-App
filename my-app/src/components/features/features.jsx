@@ -3,7 +3,6 @@ import useFetch from '../../hooks/useFetch';
 const Features = () => {
 
     const {data, loading, error} = useFetch("http://localhost:8000/hotels/countByCity?cities=casablanca,fes,Maknes");
-    console.log("data here-->", data);
   return (
     <div className='flex w-full max-w-[1024px] justify-between gap-[10px] z-[1]'>
         { loading ? ("Loading please wait ") : (

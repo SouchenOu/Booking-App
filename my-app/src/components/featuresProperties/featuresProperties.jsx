@@ -3,7 +3,6 @@ import useFetch from '../../hooks/useFetch'
 
 const FeaturesProperties = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/hotels/features?featured=true");
-    console.log("data featuress-->", data);
   return (
     <div className='flex w-full max-w-[1024px] gap-[20px] justify-between'>
         <div className='gap-[10px] flex flex-col'>

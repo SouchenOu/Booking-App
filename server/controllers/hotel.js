@@ -16,7 +16,6 @@ export const createHotel = async (req, res, next) =>{
 }
 
 export const UpdateHotel = async (req, res, next) =>{
-    console.log("update here !!");
     try{
        
         const updateHotel = await Hotel.findByIdAndUpdate(req.params.id, { $set : req.body});
@@ -85,24 +84,23 @@ export const DeleteHotel = async (req, res, next) =>{
 }
 
 
-export const getHotel = async (req, res, next) =>{
-    try{
-        const hotel =  await Hotel.findById(req.params.id);
-         res.status(200).json(hotel)
+// export const getHotel = async (req, res, next) =>{
+//     console.log("getHotel");
+//     try{
+//         const hotel =  await Hotel.findById(req.params.id);
+//          res.status(200).json(hotel)
  
-     }catch(err){
-         res.status(500).json(err);
-         // next(err);
-     }
-}
+//      }catch(err){
+//          res.status(500).json(err);
+//          // next(err);
+//      }
+// }
 
 // get just featured hotels
 
 export const getFeaturesHotel = async (req, res, next) =>{
     try{
-        console.log("heree!");
         const featured = await Hotel.find(req.query);
-        console.log("featured-->", featured);
         res.status(200).json(featured);
     }catch(err){
         res.status(500).json(err);
@@ -110,25 +108,46 @@ export const getFeaturesHotel = async (req, res, next) =>{
     }
 }
 
-export const getAllHotels = async (req, res, next) =>{
-    try{
-        const hotels = await Hotel.find();
-        res.status(200).json(hotels);
-    }catch(err){
-        res.status(500).json(err);
-        // next(err);
+// export const getAllHotels = async (req, res, next) =>{
+//     try{
+//         const hotels = await Hotel.find();
+//         res.status(200).json(hotels);
+//     }catch(err){
+//         res.status(500).json(err);
+//         // next(err);
+//     }
+// }
+
+
+
+// export const getAllHotels = async (req, res, next) => {
+//     console.log("backend all hotels");
+//     const { city, min, max, ...others } = req.query; // Include city in the destructuring
+//     try {
+//       const hotels = await Hotel.find({
+//         ...others,
+//         city: city, // Use the city parameter in the query
+//         cheapestPrice: { $gt: min | 1, $lt: max || 999 },
+//       }).limit(req.query.limit);
+//       res.status(200).json(hotels);
+//     } catch (err) {
+//       next(err);
+//     }
+//   };
+
+export const getHotel = async (req, res, next) => {
+    try {
+      const hotel = await Hotel.findById(req.params.id);
+      res.status(200).json(hotel);
+    } catch (err) {
+      next(err);
     }
-}
-
-
-
-export const getHotels = async (req, res, next) => {
-    console.log("backend all hotels");
-    const { city, min, max, ...others } = req.query; // Include city in the destructuring
+  };
+  export const getHotels = async (req, res, next) => {
+    const { min, max, ...others } = req.query;
     try {
       const hotels = await Hotel.find({
         ...others,
-        city: city, // Use the city parameter in the query
         cheapestPrice: { $gt: min | 1, $lt: max || 999 },
       }).limit(req.query.limit);
       res.status(200).json(hotels);

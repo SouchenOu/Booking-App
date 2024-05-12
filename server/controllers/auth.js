@@ -37,12 +37,8 @@ export const login = async (req, res, next) => {
         //then if all good we should compare the password
         const comparePassword = await bcrypt.compare(req.body.password, user.password);
 
-        console.log("pass1-->", req.body.password);
-        console.log("pass2-->",user.password);
-        console.log("comparePass-->", comparePassword);
         if(!(req.body.password === user.password)) 
         {
-            console.log("error pass");
             return res.status(400).json("wrong password");
         }
         const token = jwt.sign({id : user._id, isAdmin: user.isAdmin}, "X7RUYe3VZsZWPzJ9pG91WcvKzlL3OmIDlTdSCPmTRiQ=");
