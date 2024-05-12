@@ -5,28 +5,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
+import { AuthContext } from '../../context/AuthContext'
+import Reserve from '../reserve/Reserve'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const location = useLocation();
+  const [openState, setOpenState] = useState(false);
+  const navigate = useNavigate();
   const id = location.pathname.split("/");
   const idFinal = id[2];
   const {data, loading, error} = useFetch(`http://localhost:8000/hotels/find/${idFinal}`);
   const [open , setOpen] = useState(false);
   const {dates, options} = useContext(SearchContext);
-  console.log("dates here-->", dates);
+  const {user} = useContext(AuthContext);
   const MILISECOND_PERdAYS = 1000 *60 * 60 * 24;
   const calculeDayDifference = (date1, date2) => {
-    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const timeDiff = Math.abs(date2?.getTime() - date1?.getTime());
     const diffDay = Math.ceil(timeDiff / MILISECOND_PERdAYS);
     return diffDay;
   }
 
-  const days = calculeDayDifference(dates[0].endDate, dates[0].startDate );
-  console.log("days in hotels-->", days);
+  const days = calculeDayDifference(dates[0]?.endDate, dates[0]?.startDate );
+
+  const handleClick = () =>{
+    if(!user){
+      navigate("/login");
+    }else{
+      setOpenState(true);
+
+    }
+    }
+
+  
 
   const pictures = [
     {
@@ -92,9 +106,9 @@ const Hotel = () => {
       <Navbar/>
       <Header type="list"/>
       <div className=' flex flex-col  mt-[20px] p-[20px] items-center'>
-        {open && <div className='sticky top-[0] left-[0] w-[80vw] h-[100vh] z-[9999] flex items-center' style={{background : 'rgba(118, 119, 165, 0.5)'}}>
+        {open && <div className='sticky top-[0] left-[0] w-[80vw] h-[100vh] z-[999] flex items-center' style={{background : 'rgba(212, 211, 211, 0.613)'}}>
         <div className='absolute top-[100px] left-[200px]'>
-          <FontAwesomeIcon icon={faCircleXmark} className='w-[70px] h-[70px] cursor-pointer' style={{color : '#B74803'}} onClick={()=>setOpen(false)}  />
+          <FontAwesomeIcon icon={faCircleXmark} className='top-[0] left-[0] w-[40px] h-[40px]  cursor-pointer sticky' style={{color : 'rgba(0, 0, 0, 0.613)'}} onClick={()=>setOpen(false)}  />
         </div>
           <FontAwesomeIcon icon={faCircleArrowLeft} className='cursor-pointer m-[20px] text-2xl w-[70px] h-[70px]' style={{color : 'lightgray'}} onClick={()=>handleMove("left")}/>
           <div className='w-full h-full flex items-center justify-center'>
@@ -104,7 +118,7 @@ const Hotel = () => {
           
           </div>}
         <div className='w-full w-max-[1000px] flex flex-col gap-[20px]'>
-          <button className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[200px] borded-none rounded-lg ' style={{background: '#022E51'}}>Reserve or book now</button>
+          <button onClick={handleClick} className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[200px] borded-none rounded-lg ' style={{background: '#022E51'}}>Reserve or book now</button>
           <h1 className='text-2xl'>{data.name}</h1>
           <div className='flex gap-[4px] items-center'>
             <FontAwesomeIcon icon={faLocationDot}/>
@@ -140,6 +154,7 @@ const Hotel = () => {
             </div>
           </div>
         </div>
+        {openState && <Reserve setOpen={setOpenState} HotelId={idFinal}/>}
         <MailList/>
         <div className='mt-[20px]'>
           <Footer/>

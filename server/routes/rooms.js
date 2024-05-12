@@ -15,5 +15,8 @@ router.delete('/:id/:hotelid', verifyAdmin, DeleteRoom);
 router.get('/:id',verifyAdmin, getRoom);
 
 router.get("/", verifyAdmin, getAllRooms);
+// check the availabilty of the room
+
+router.put("")
 /************ */
 export default router;

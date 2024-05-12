@@ -8,10 +8,13 @@ import {format} from "date-fns"
 
 import {useNavigate} from 'react-router-dom'
 import { SearchContext } from '../../context/SearchContext'
+import { AuthContext } from '../../context/AuthContext'
 
 const Header = ({type}) => {
 
     const [destination, setDestination] = useState("");
+    const {user} = useContext(AuthContext);
+
     const [active, setActive] = useState(null);
     const[openDate, setOpenDate] = useState(false);
     const [openOptions, setOpenOptions] = useState(false);
@@ -84,7 +87,7 @@ const Header = ({type}) => {
                  <>
                  <h1 className='text-white  text-2xl font-bold '> A life time of discounts? It's Genius</h1>
                      <p className='mt-[20px] mb-[20px]'> Get rewarded for your travels - unlock instant savings of 10% or more with a free bookingHotels account.</p>
-                     <button className=' p-[10px]  border-[3px]  text-white rounded cursor-pointer' style={{background : '#B74803'}}> SignIn / Register</button>
+                    {!user && <button className=' p-[10px]  border-[3px]  text-white rounded cursor-pointer' style={{background : '#B74803'}}> SignIn / Register</button>} 
                      <div className='h-[30px] flex items-center justify-between border-solid border-[3px]  border-gray-300 p-6 rounded-lg absolute bottom-[-25px] w-full max-w-[1024px]' style={{background:'#fff'}} >
                          <div className='gap-[10px] flex items-center' >
                              <FontAwesomeIcon icon={faBed} className='' style={{color: 'lightgray'}}/>
