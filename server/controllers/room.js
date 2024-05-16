@@ -87,3 +87,20 @@ export const getAllRooms = async (req, res, next) =>{
         // next(err);
     }
 }
+
+export const   updateRoomAvailability = async (req, res, next) => {
+    try {
+        console.log("enter here available");
+      const test =   await Rooms.updateOne(
+        { "roomNumbers._id": req.params.id },
+        {
+          $push: {
+            "roomNumbers.$.unavailableDates": req.body.dates
+          },
+        }
+      );
+      res.status(200).json(test);
+    } catch (err) {
+      next(err);
+    }
+  };

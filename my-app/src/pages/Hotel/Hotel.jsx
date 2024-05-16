@@ -150,7 +150,7 @@ const Hotel = () => {
               <h1 className='text-2xl font-bold' style={{color  : '#CC6D3D'}}>Perfect for a {days} night stay</h1>
               <span className='text-xl'>Located in real heart of krakow, this property has an excelent location score of 9.8 ! </span>
               <h2 className='text-xl font-bold '> ${days * data.cheapestPrice * options.room} {days} nights</h2>
-              <button className='text-white text-xl font-extrabold rounded-lg border-none border-[3px] border-gray-500 p-[9px]' style={{background : '#022E51'}}>Reserve or book now</button>
+              <button onClick={handleClick} className='text-white text-xl font-extrabold rounded-lg border-none border-[3px] border-gray-500 p-[9px]' style={{background : '#022E51'}}>Reserve or book now</button>
             </div>
           </div>
         </div>

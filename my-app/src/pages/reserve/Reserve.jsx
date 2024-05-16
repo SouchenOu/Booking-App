@@ -3,12 +3,18 @@ import useFetch from '../../hooks/useFetch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { SearchContext } from '../../context/SearchContext';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";;
 
 const Reserve = ({setOpen, HotelId}) => {
+
+  console.log("enter reserve");
   const {data, loading, error} = useFetch(`http://localhost:8000/hotels/room/${HotelId}`);
+  const navigate = useNavigate();
   const [selectRoom, setSelectRoom] = useState([]);
-  {dates} = useContext(SearchContext);
+  const {dates} = useContext(SearchContext);
   console.log("data rooms-->", data);
+  console.log("date here-->", dates);
   const handleSelect = (e) =>{
     const checked = e.target.checked;
     const value = e.target.value;
@@ -17,11 +23,9 @@ const Reserve = ({setOpen, HotelId}) => {
   }
   console.log("selecte room-->", selectRoom);
 
-  const handleClick = () =>{
+ 
 
-
-  }
-
+ 
   const getDateInRange = (startDate, endDate) =>{
     const start = new Date(startDate);
     const end = new Date(endDate);
@@ -29,14 +33,39 @@ const Reserve = ({setOpen, HotelId}) => {
 
     let list = [];
 
-    while(data <= endDate){
+    while(date <= end){
       list.push(new Date(date).getTime());
       date.setDate(date.getDate() + 1);
     }
 
   }
 
-  const allDates = getDateInRange(dates[0].startDate, dates[0].endDate)
+  const allDates = getDateInRange(dates[0].startDate, dates[0].endDate);
+
+  const handleClick = async () =>{
+    try{
+      await Promise.all(selectRoom.map((roomId) =>{
+        const res =  axios.put(`http://localhost:8000/rooms/availability/${roomId}`, {dates : allDates});
+        console.log("response here-->", res);
+        return (res.data)
+      }))
+      setOpen(false);
+      navigate("/");
+
+    }catch(err){
+
+    }
+
+  }
+
+  const isAvailable = (roomNumber) => {
+    console.log("available-->", roomNumber.unavailableDates);
+    const isFound = roomNumber.unavailableDates.some((date) =>
+      allDates.includes(new Date(date).getTime())
+    );
+
+    return !isFound;
+  };
 
   console.log("select rooms-->", selectRoom);
   return (
@@ -65,7 +94,7 @@ const Reserve = ({setOpen, HotelId}) => {
               {item?.roomNumbers.map((elem)=>(
                 <div className=' w-[400px] flex items-center justify-center gap-[20px]]'>
                   <label className='text-[24px] font-[400px]'>{elem?.number}</label>
-                  <input  className=" w-[50px] h-[30px] cursor-pointer" type="checkbox" value={elem?._id} onChange={handleSelect}/>
+                  <input  className=" w-[50px] h-[30px] cursor-pointer" type="checkbox" value={elem?._id} onChange={handleSelect}  disabled={!isAvailable(elem)}/>
                 </div>
               ))}
             </div>
