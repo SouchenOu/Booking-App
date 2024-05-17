@@ -102,8 +102,8 @@ const Sidebar = () => {
                 </ul>
             </div>
             <div className="flex items-enter m-[10px]">
-                <div className="w-[20px] h-[20px] rounded-[5px] border-[1px] border-solid border-gray-[300] cursor-pointer m-[5px] bg-black" onClick={() => dispatch({ type: "LIGHT" })}></div>
-                <div className="w-[20px] h-[20px] rounded-[5px] border-[1px] border-solid border-gray-[300] cursor-pointer m-[5px] " onClick={() => dispatch({ type: "DARK" })}></div>
+                <div className="w-[20px] h-[20px] rounded-[5px] border-[1px] border-solid border-gray-[300] cursor-pointer m-[5px] " onClick={() => dispatch({ type: "LIGHT" })}></div>
+                <div className="w-[20px] h-[20px] rounded-[5px] border-[1px] border-solid border-gray-[300] cursor-pointer m-[5px] bg-black" onClick={() => dispatch({ type: "DARK" })}></div>
             </div>
          </div>
       

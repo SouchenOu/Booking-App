@@ -10,7 +10,7 @@ function App() {
   console.log("darkmode-->", darkMode);
 
   return (
-    <div className={ darkMode ? "app dark" : "bg-black"}>
+    <div className={ !darkMode ? "app dark" : "bg-black"}>
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Home/>}></Route>
