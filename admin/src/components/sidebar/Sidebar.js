@@ -5,6 +5,16 @@ import { faColumns } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faHotel } from '@fortawesome/free-solid-svg-icons';
 import { DarkModeContext } from '../context/darkModeContext';
+import { faBed } from '@fortawesome/free-solid-svg-icons';
+import { faTruck } from '@fortawesome/free-solid-svg-icons';
+import {faBell}  from "@fortawesome/free-solid-svg-icons";
+import {faUserNurse} from "@fortawesome/free-solid-svg-icons";
+import { faGear } from '@fortawesome/free-solid-svg-icons';
+import {faAddressCard} from '@fortawesome/free-solid-svg-icons';
+import {faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
+
+
+
 
 
 
@@ -46,14 +56,14 @@ const Sidebar = () => {
                     </Link>
                     <Link to="" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                            <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                            <FontAwesomeIcon icon={faBed} className='text-[18px]' style={{color : "#7451f8"}}/>
                             <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Rooms</span>
                         </li>
 
                     </Link>
                     <Link to="" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                            <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                            <FontAwesomeIcon icon={faTruck} className='text-[18px]' style={{color : "#7451f8"}}/>
                             <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Delivray</span>
                         </li>
 
@@ -64,12 +74,12 @@ const Sidebar = () => {
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>State</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                        <FontAwesomeIcon icon={faBell} className='text-[18px]' style={{color : "#7451f8"}}/>
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Notification</span>
                     </li>
                     <p className='text-[30px] font-bold p-[15px]' style={{color : "#999"}}>Service</p>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                        <FontAwesomeIcon icon={faUserNurse} className='text-[18px]' style={{color : "#7451f8"}}/>
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>System Health</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
@@ -77,16 +87,16 @@ const Sidebar = () => {
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Logs</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                        <FontAwesomeIcon icon={faGear} className='text-[18px]' style={{color : "#7451f8"}}/>
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Settings</span>
                     </li>
                     <p className='text-[30px] font-bold p-[15px]' style={{color : "#999"}}>User</p>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                        <FontAwesomeIcon icon={faAddressCard} className='text-[18px]' style={{color : "#7451f8"}}/>
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Profile</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
+                        <FontAwesomeIcon icon={faRightFromBracket} className='text-[18px]' style={{color : "#7451f8"}}/>
                         <span className='text-[20px] bold-[600]' style={{color : "#888"}}>LogOut</span>
                     </li>
                 </ul>
