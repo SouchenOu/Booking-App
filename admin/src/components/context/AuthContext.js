@@ -42,14 +42,18 @@ const AuthReducer = (state, action) =>{
     }
 }
 
+//AuthContextProvider is a component that wraps its children with AuthContext.Provider.
 
 export const AuthContextProvider = ({children}) =>{
+
+    //useReducer initializes the state and provides a dispatch function to trigger actions.
     const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
     useEffect(()=>{
         localStorage.setItem("user", JSON.stringify(state.user));
 
-    },[])
+    },)
     return (
+        /*The Provider component makes the user, loading, error, and dispatch values available to any nested components that consume the context.*/ 
         <AuthContext.Provider value={{user : state.user, loading : state.loading, error : state.error, dispatch}}>
             {children}
         </AuthContext.Provider>
