@@ -1,20 +1,39 @@
 import './App.css';
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import { useContext } from 'react';
 import { DarkModeContext } from './components/context/darkModeContext';
+import Users from './components/users/Users';
+import { AuthContext } from './components/context/AuthContext';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
   console.log("darkmode-->", darkMode);
+  const ProtectedRoute = () =>{
+    const {user} = useContext(AuthContext);
+    if(!user){
+      <Navigate tp="/login"/>
 
+    }
+
+  }
   return (
     <div className={ !darkMode ? "app dark" : "bg-black"}>
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
+            <Route path="/users" >
+              <Route index element={
+                  <ProtectedRoute>
+                    <Users  />
+                  </ProtectedRoute>
+                }>
+
+              </Route>
+
+            </Route>
 
         </Routes>
       

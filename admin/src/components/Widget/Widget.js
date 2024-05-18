@@ -65,7 +65,7 @@ const Widget = ({type}) => {
         <div className='flex flex-col justify-between'>
             <span className='text-[20px] font-bold' style={{color : "gray"}}>{data?.title}</span>
             <span className='text-[30px] font-[300px]'>{ data?.isMoney } {amount}</span>
-            <span className='text-[20px] border-b-[1px] border-solid border-gray-400'>{data?.link}</span>
+            <span className='text-[20px] border-b-[1px] border-solid border-gray-400 cursor-pointer'>{data?.link}</span>
         </div>
         <div className='flex flex-col justify-between'>
             <div className='flex items-center text-[14px]'>
