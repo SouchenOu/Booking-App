@@ -15,7 +15,7 @@ import {faBars} from "@fortawesome/free-solid-svg-icons"
 const Navbar = () => {
     const {dispatch} = useContext(DarkModeContext)
   return (
-    <div className='h-[50px] border-b-[0.5px] border-solid border-gray-500 flex items-center text-[14px]' style={{color : "black"}}>
+    <div className='h-[53px] border-[0.5px] border-solid  border-gray-300 flex items-center  text-[14px]' style={{color : "black"}}>
       <div className='w-[100%] p-[20px]  flex items-center justify-between'>
         <div className='flex flex-items justify-center gap-[10px] p-[3px] px-[14px] border-[0.5px] border-solid border-[lightgray]'>
             <input type="text" placeholder="Search..." className='border-none outline-none bg-transparent text-[20px]'/>
@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
         <div className='flex items-center p-[500px] gap-[20px] relative'>
             <div className='flex items-center mr-[20px] relative  text-[20px] font-bold gap-[10px]'>
-                <FontAwesomeIcon icon={faGlobe} className='text-[25px]' />
+                <FontAwesomeIcon icon={faGlobe} className='text-[29px]' />
                 English
             </div>
             <div className='flex items-center mr-[20px] relative font-bold '>
@@ -31,19 +31,19 @@ const Navbar = () => {
 
             </div>
             <div className='flex items-center mr-[20px] font-bold relative'>
-                <FontAwesomeIcon icon={faXmark} className='text-[25px]'/>
+                <FontAwesomeIcon icon={faXmark} className='text-[28px]'/>
             </div>
             <div className='flex items-center mr-[20px] font-bold relative'>
-                <FontAwesomeIcon icon={faBell}  className='text-[25px]'/>
-                <div className='w-[15px] h-[15px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>1</div>
+                <FontAwesomeIcon icon={faBell}  className='text-[28px]'/>
+                <div className='w-[19px] h-[19px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>1</div>
 
             </div>
             <div className='flex items-center mr-[20px] font-bold relative'>
-                <FontAwesomeIcon icon={faMessage} className='text-[25px]'/>
-                <div className='w-[15px] h-[15px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>3</div>
+                <FontAwesomeIcon icon={faMessage} className='text-[28px]'/>
+                <div className='w-[19px] h-[19px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>3</div>
             </div>
             <div className='flex items-center mr-[20px] font-bold relative'>
-                <FontAwesomeIcon icon={faBars} className='text-[20px]'/>
+                <FontAwesomeIcon icon={faBars} className='text-[28px]'/>
             </div>
             <div className="flex items-center mr-[20px] font-bold relative">
                 <img

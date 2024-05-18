@@ -40,7 +40,7 @@ const Sidebar = () => {
                         <span className='text-[25px] bold-[600] ' style={{color : "#888"}}>Dashboard</span>
                     </li>
                     <p className='text-[40px] font-bold p-[15px]' style={{color : "#999"}}>List</p>
-                    <Link to="/" className=''>
+                    <Link to="/Users" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
                             <FontAwesomeIcon icon={faUser} className='text-[20px]'  style={{color : "#7451f8"}}/>
                             <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Users</span>
