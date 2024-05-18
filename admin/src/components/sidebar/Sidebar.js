@@ -36,68 +36,68 @@ const Sidebar = () => {
                 <ul className=' flex flex-col items-start justify-center list-none m-[0] p-[0]'>
                     <p className='text-[30px] font-bold mt-[15px] mb-[5px] p-[15px]' style={{color : "#999"}}>Main</p>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faColumns} className='text-[18px]'  style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600] ' style={{color : "#888"}}>Dashboard</span>
+                        <FontAwesomeIcon icon={faColumns} className='text-[20px]'  style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600] ' style={{color : "#888"}}>Dashboard</span>
                     </li>
-                    <p className='text-[30px] font-bold p-[15px]' style={{color : "#999"}}>List</p>
+                    <p className='text-[40px] font-bold p-[15px]' style={{color : "#999"}}>List</p>
                     <Link to="/" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                            <FontAwesomeIcon icon={faUser} className='text-[18px]'  style={{color : "#7451f8"}}/>
-                            <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Users</span>
+                            <FontAwesomeIcon icon={faUser} className='text-[20px]'  style={{color : "#7451f8"}}/>
+                            <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Users</span>
                         </li>
 
                     </Link>
                     <Link to="" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                            <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
-                            <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Hotels</span>
+                            <FontAwesomeIcon icon={faHotel} className='text-[20px]' style={{color : "#7451f8"}}/>
+                            <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Hotels</span>
                         </li>
 
                     </Link>
                     <Link to="" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                            <FontAwesomeIcon icon={faBed} className='text-[18px]' style={{color : "#7451f8"}}/>
-                            <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Rooms</span>
+                            <FontAwesomeIcon icon={faBed} className='text-[20px]' style={{color : "#7451f8"}}/>
+                            <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Rooms</span>
                         </li>
 
                     </Link>
                     <Link to="" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                            <FontAwesomeIcon icon={faTruck} className='text-[18px]' style={{color : "#7451f8"}}/>
-                            <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Delivray</span>
+                            <FontAwesomeIcon icon={faTruck} className='text-[20px]' style={{color : "#7451f8"}}/>
+                            <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Delivray</span>
                         </li>
 
                     </Link>
                     <p className='text-[30px] font-bold p-[15px]' style={{color : "#999"}}>Useful</p>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>State</span>
+                        <FontAwesomeIcon icon={faHotel} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>State</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faBell} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Notification</span>
+                        <FontAwesomeIcon icon={faBell} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Notification</span>
                     </li>
-                    <p className='text-[30px] font-bold p-[15px]' style={{color : "#999"}}>Service</p>
+                    <p className='text-[40px] font-bold p-[15px]' style={{color : "#999"}}>Service</p>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faUserNurse} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>System Health</span>
-                    </li>
-                    <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faHotel} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Logs</span>
+                        <FontAwesomeIcon icon={faUserNurse} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>System Health</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faGear} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Settings</span>
-                    </li>
-                    <p className='text-[30px] font-bold p-[15px]' style={{color : "#999"}}>User</p>
-                    <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faAddressCard} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>Profile</span>
+                        <FontAwesomeIcon icon={faHotel} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Logs</span>
                     </li>
                     <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
-                        <FontAwesomeIcon icon={faRightFromBracket} className='text-[18px]' style={{color : "#7451f8"}}/>
-                        <span className='text-[20px] bold-[600]' style={{color : "#888"}}>LogOut</span>
+                        <FontAwesomeIcon icon={faGear} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Settings</span>
+                    </li>
+                    <p className='text-[40px] font-bold p-[15px]' style={{color : "#999"}}>User</p>
+                    <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
+                        <FontAwesomeIcon icon={faAddressCard} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Profile</span>
+                    </li>
+                    <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
+                        <FontAwesomeIcon icon={faRightFromBracket} className='text-[20px]' style={{color : "#7451f8"}}/>
+                        <span className='text-[25px] bold-[600]' style={{color : "#888"}}>LogOut</span>
                     </li>
                 </ul>
             </div>
