@@ -18,24 +18,19 @@ const Login = () => {
     }
     const handleClick = async (e) =>{ 
         e.preventDefault()
-        console.log("enter here login")
         dispatch({type : "LOGIN_START"});
         try{
             const login_response = await axios.post("http://localhost:8000/auth/login", infoUser);
             navigate("/");
-            console.log("login_response here-->", login_response);
             dispatch({type: "LOGIN_SUCCESS", payload : login_response.data});
 
         }catch(err){
-            console.log("error here-->", err.response.data);
             alert(err.response.data);
             dispatch({type: "LOGIN_FAILURE", payload : err.response.data});       
         }
     }
     
 
-    console.log("user here-->", user);
-    console.log("error-->", error);
   return (
     <section className='bg-gray-100 dark:bg-gray-900'>
         <div className='flex flex-col items-center justify-center   md:h-screen '>

@@ -8,20 +8,16 @@ import { useNavigate } from "react-router-dom";;
 
 const Reserve = ({setOpen, HotelId}) => {
 
-  console.log("enter reserve");
   const {data, loading, error} = useFetch(`http://localhost:8000/hotels/room/${HotelId}`);
   const navigate = useNavigate();
   const [selectRoom, setSelectRoom] = useState([]);
   const {dates} = useContext(SearchContext);
-  console.log("data rooms-->", data);
-  console.log("date here-->", dates);
   const handleSelect = (e) =>{
     const checked = e.target.checked;
     const value = e.target.value;
     setSelectRoom(checked ? [...selectRoom, value] : selectRoom.filter((item) => item !== value))
 
   }
-  console.log("selecte room-->", selectRoom);
 
  
 
@@ -46,7 +42,6 @@ const Reserve = ({setOpen, HotelId}) => {
     try{
       await Promise.all(selectRoom.map((roomId) =>{
         const res =  axios.put(`http://localhost:8000/rooms/availability/${roomId}`, {dates : allDates});
-        console.log("response here-->", res);
         return (res.data)
       }))
       setOpen(false);
@@ -59,7 +54,6 @@ const Reserve = ({setOpen, HotelId}) => {
   }
 
   const isAvailable = (roomNumber) => {
-    console.log("available-->", roomNumber.unavailableDates);
     const isFound = roomNumber.unavailableDates.some((date) =>
       allDates.includes(new Date(date).getTime())
     );
@@ -67,7 +61,6 @@ const Reserve = ({setOpen, HotelId}) => {
     return !isFound;
   };
 
-  console.log("select rooms-->", selectRoom);
   return (
     <div className='flex items-center justify-center h-full w-full  top-[0] left-[0] fixed' style={{ background: 'rgba(0, 0, 0, 0.418)'}}>
       <div className='bg-white p-[100px] relative'>

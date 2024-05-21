@@ -5,7 +5,6 @@ import { AuthContext } from '../../context/AuthContext'
 const Navbar = () => {
   const {user} = useContext(AuthContext);
   const navigate = useNavigate()
-    console.log("user in nav-->", user);
     const navigateFunc = () =>{
       navigate("/login");
 

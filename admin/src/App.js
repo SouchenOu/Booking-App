@@ -10,7 +10,6 @@ import { userColumns } from './components/data';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-  console.log("darkmode-->", darkMode);
   const ProtectedRoute = ({children}) =>{
     const {user} = useContext(AuthContext);
     if(!user){

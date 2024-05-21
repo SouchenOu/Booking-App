@@ -90,7 +90,6 @@ export const getAllRooms = async (req, res, next) =>{
 
 export const   updateRoomAvailability = async (req, res, next) => {
     try {
-        console.log("enter here available");
       const test =   await Rooms.updateOne(
         { "roomNumbers._id": req.params.id },
         {

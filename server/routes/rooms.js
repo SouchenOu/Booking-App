@@ -16,8 +16,8 @@ router.get('/:id',verifyAdmin, getRoom);
 
 router.get("/", verifyAdmin, getAllRooms);
 // check the availabilty of the room
-router.put("/availability/:id", updateRoomAvailability)
+router.put("/availability/:id", updateRoomAvailability);
 
-router.put("")
+router.put("");
 /************ */
 export default router;

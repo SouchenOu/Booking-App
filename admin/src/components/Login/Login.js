@@ -23,8 +23,6 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("http://localhost:8000/auth/login", credentials);
-      console.log("res here admin-->", res);
-      console.log("res detail here-->", res.data.details);
       if (res.data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
 

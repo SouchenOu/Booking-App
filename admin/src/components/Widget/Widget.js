@@ -59,7 +59,6 @@ const Widget = ({type}) => {
             break;
         
     }
-    console.log("data here widget-->", data?.title);
   return (
     <div className=' flex flex-1 justify-between gap-[100px] p-[40px] shadow-custom rounded-[10px] h-[200px]  '>
         <div className='flex flex-col justify-between'>

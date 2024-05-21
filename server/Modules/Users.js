@@ -15,16 +15,24 @@ const UserSchema = new mongoose.Schema({
         required : true,
         unique : true, 
     },
+    country: {
+        type : String,
+        required : true,
+    },
+    city : {
+        type : String,
+        required : true,
+    },
+    phone : {
+        type: String,  // Changed field name to lowercase
+        unique: true,  
+    },
     password :{
         type : String,
         required : true,
-        // unique : true,
-
     },
     isAdmin : {
         type : Boolean,
-        required : true,
-
         // default : false,
     }
 

@@ -4,7 +4,6 @@ import Navbar from '../Navbar/Navbar'
 import Usercomponent from './Usercomponent'
 
 const Users = ({data}) => {
-  console.log("data here users-->", data);
   return (
     <div className='flex w-full'>
       <Sidebar/>

@@ -1,60 +1,104 @@
-import React, { useState } from 'react'
-import {Link} from "react-router-dom"
-import { DataGrid } from "@mui/x-data-grid";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useFetch from '../hookes/useFetch';
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const UserComponent = () => {
+    const ToastError = (message) => {
+		toast.error(message, {
+		  position: toast.POSITION.TOP_RIGHT,
+		  autoClose: 5000,
+		  hideProgressBar: false,
+		  closeOnClick: true,
+		  pauseOnHover: true,
+		  draggable: true,
+		});
+	  };
+	
+	  const ToastSuccess = (message) => {
+		toast.success(message, {
+		  position: toast.POSITION.TOP_RIGHT,
+		  autoClose: 5000,
+		  hideProgressBar: false,
+		  closeOnClick: true,
+		  pauseOnHover: true,
+		  draggable: true,
+		});
+	  };
+  const [list, setList] = useState([]);
+  const { data, loading, error } = useFetch('http://localhost:8000/users');
 
-const Usercomponent = ({element}) => {
-    console.log("element here-->", element);
-    const [list , setList] = useState();
-    const handleDelete = () =>{
+  useEffect(() => {
+    if (data) {
+      setList(data);
+    }
+  }, [data]);
+
+  const handleDelete = async (id) => {
+
+    console.log("id here-->", id);
+    console.log("just enter delete");
+    try{
+        console.log("enter to delete user");
+        await axios.delete('http://localhost:8000/users');
+        ToastSuccess(`Delete succefully !`);
+
+    }catch(err){
+        console.log(err);
 
     }
-    const { data, loading, error } = useFetch('http://localhost:8000/users');
-    console.log("data in admin here-->", data);
+  };
+  const testFunction = () =>{
+    console.log("test herere")
+  }
 
-    const actionColumn = [
-        {
-          field: "action",
-          headerName: "Action",
-          width: 200,
-          renderCell: (params) => {
-            return (
-              <div className="cellAction">
-                <Link to="/users/test" style={{ textDecoration: "none" }}>
-                  <div className="viewButton">View</div>
-                </Link>
-                <div
-                  className="deleteButton"
-                  onClick={() => handleDelete(params.row._id)}
-                >
-                  Delete
-                </div>
-              </div>
-            );
-          },
-        },
-      ];
   return (
-    <div className='p-[20px]'>
-        <div className='flex items-center justify-between gap-[20px]'>
-            <p className='text-[30px] font-bold text-gray-400'>Add New User</p>
-            <Link className='text-[20px] font-bold rounded-[5px] border-[2px] border-green-700 px-[30px] text-green-700'>Add New</Link>
-      
+    <div className='p-5'>
+        <ToastContainer />
 
-        </div>
-        <DataGrid
-            className=""
-            rows={list}
-            columns={element.concat(actionColumn)}
-            pageSize={9}
-            rowsPerPageOptions={[9]}
-            checkboxSelection
-            getRowId={(row) => row._id}
-      />
-        
+      <div className='flex items-center justify-between gap-5 mb-4'>
+        <p className='text-3xl font-bold text-gray-500'>Add New User</p>
+        <Link to='/users/new' className='text-xl font-bold rounded-md border-2 border-green-700 px-8 text-green-700 cursor-pointer'>
+          Add New
+        </Link>
+      </div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error loading users</p>}
+      <div className='overflow-x-auto'>
+        <table className='min-w-full bg-white'>
+          <thead>
+            <tr className=''>
+              <th className='py-2 px-4  border-b border-r text-[20px]' style={{color : '#6439ff'}}>ID</th>
+              <th className='py-2 px-4 border-b border-r text-[20px] ' style={{color : '#6439ff'}}>Username</th>
+              <th className='py-2 px-4 border-b border-r text-[20px]' style={{color : '#6439ff'}}>Email</th>
+              <th className='py-2 px-4 border-b  border-r text-[20px]' style={{color : '#6439ff'}}>Country</th>
+              <th className='py-2 px-4 border-b border-r text-[20px]' style={{color : '#6439ff'}}>City</th>
+              <th className='py-2 px-4 border-b border-r text-[20px]' style={{color : '#6439ff'}}>Actions</th>
+            </tr>
+          </thead>
+          <tbody className=''>
+            {list.map((user) => (
+              <tr key={user._id}>
+                <td className='py-2 px-[100px] max-w-[20px] border-b  border-r  text-[20px] font-bold text-gray-500'>{user._id}</td>
+                <td className='py-2 px-4 border-b border-r text-[20px]'>{user.username}</td>
+                <td className='py-2 px-4 border-b border-r text-[20px]'>{user.email}</td>
+                <td className='py-2 px-4 border-b border-r text-[20px]'>{user.country}</td>
+                <td className='py-2 px-4 border-b border-r text-[20px]'>{user.city}</td>
+                <td className='py-2 px-4 border-b text-[20px]'>
+                  <Link to={`/users/${user._id}`} className='px-4 py-2 text-white cursor-pointer bg-blue-500 rounded-md'>
+                    View
+                  </Link>
+                  <button onClick={()=>handleDelete(user._id)} className='px-4 py-2 ml-2 text-white bg-red-500 rounded-md cursor-pointer' style={{cursor : 'pointer'}}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Usercomponent
+export default UserComponent;
