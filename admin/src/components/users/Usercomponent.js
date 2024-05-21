@@ -87,7 +87,7 @@ const UserComponent = () => {
                 <td className='py-2 px-4 border-b border-r text-[20px]'>{user.country}</td>
                 <td className='py-2 px-4 border-b border-r text-[20px]'>{user.city}</td>
                 <td className='py-2 px-4 border-b text-[20px]'>
-                  <Link to={`/users/${user._id}`} className='px-4 py-2 text-white cursor-pointer bg-blue-500 rounded-md'>
+                  <Link to='/' className='px-4 py-2 text-white cursor-text bg-blue-500 rounded-md'>
                     View
                   </Link>
                   <button onClick={()=>handleDelete(user._id)} className='px-4 py-2 ml-2 text-white bg-red-500 rounded-md cursor-pointer' style={{cursor : 'pointer'}}>Delete</button>

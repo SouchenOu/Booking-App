@@ -7,6 +7,7 @@ import { DarkModeContext } from './components/context/darkModeContext';
 import Users from './components/users/Users';
 import { AuthContext } from './components/context/AuthContext';
 import { userColumns } from './components/data';
+import InfoUser from './components/users/InfoUser';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -41,6 +42,11 @@ function App() {
                       </ProtectedRoute>
                     }
                   />
+                  <Route  path=":userId" element={
+                    <ProtectedRoute>
+                      <InfoUser/>
+                    </ProtectedRoute>
+                  }/>
             
 
             </Route>
