@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     
     <div className="h-[70px] justify-center flex" style={{ background: '#0D19A3' }}>
-        <div className="max-w-[1024px] w-full text-white flex justify-between py-2 gap-[600px]	">
+        <div className="max-w-[2024px] w-full text-white flex justify-between py-2 gap-[600px]	">
           <Link to="/">
             <span className="font-bold text-[40px] cursor-pointer ">Booking.com</span>
 
