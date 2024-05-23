@@ -8,6 +8,8 @@ import MailList from '../../components/mailList/MailList'
 import Footer from '../../components/footer/Footer'
 import ListCheck from '../../components/PropertyList/ListCheck'
 import Explore from '../../components/PropertyList/Explore'
+import Inspiration from '../../components/PropertyList/Inspiration'
+import Last from '../../components/PropertyList/Last'
 
 const Home = () => {
   return (
@@ -27,7 +29,11 @@ const Home = () => {
         <h1 className='text-[40px] font-bold items-center'>Stay at our top unique properties</h1>
         <p className='text-[20px] font-bold text-gray'>From castles and villas to boats and igloos, we've got it all</p>
         <FeaturesProperties/>
+        <Inspiration/>
+        <Last/>
+
         <MailList/>
+
         <Footer/>
       </div>
     </div>
