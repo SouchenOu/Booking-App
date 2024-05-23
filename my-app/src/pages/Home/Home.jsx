@@ -18,14 +18,14 @@ const Home = () => {
         <Features/>
         <h1 className=' text-[40px] font-bold items-center'>Browser by property type</h1>
         <PropertyList/>
-        <Explore/>
-
-        <ListCheck/>
+          <Explore/>
+        < ListCheck/>
 
 
 
         
-        <h1 className='text-2xl font-bold items-center'>Home guests love</h1>
+        <h1 className='text-[40px] font-bold items-center'>Stay at our top unique properties</h1>
+        <p className='text-[20px] font-bold text-gray'>From castles and villas to boats and igloos, we've got it all</p>
         <FeaturesProperties/>
         <MailList/>
         <Footer/>
