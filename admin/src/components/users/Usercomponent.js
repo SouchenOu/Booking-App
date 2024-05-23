@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useFetch from '../hookes/useFetch';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UserComponent = () => {
+  const location = useLocation();
+
+  console.log("location here-->",location);
     const ToastError = (message) => {
 		toast.error(message, {
 		  position: toast.POSITION.TOP_RIGHT,
@@ -55,12 +58,12 @@ const UserComponent = () => {
   }
 
   return (
-    <div className='p-5'>
-        <ToastContainer />
-
-      <div className='flex items-center justify-between gap-5 mb-4'>
-        <p className='text-3xl font-bold text-gray-500'>Add New User</p>
-        <Link to='/users/new' className='text-xl font-bold rounded-md border-2 border-green-700 px-8 text-green-700 cursor-pointer'>
+    <div className='w-full'>
+        {/* <ToastContainer /> */}
+        
+      <div className='flex p-[20px] w-full items-center gap-[100px]'>
+        <p className='text-3xl font-bold text-gray-500 cursor-pointer'>Add New User</p>
+        <Link to='/Users/newUser' className='text-xl font-bold rounded-md border-2 border-green-700 px-8 text-green-700 cursor-pointer'>
           Add New
         </Link>
       </div>
@@ -87,7 +90,7 @@ const UserComponent = () => {
                 <td className='py-2 px-4 border-b border-r text-[20px]'>{user.country}</td>
                 <td className='py-2 px-4 border-b border-r text-[20px]'>{user.city}</td>
                 <td className='py-2 px-4 border-b text-[20px]'>
-                  <Link to='/' className='px-4 py-2 text-white cursor-text bg-blue-500 rounded-md'>
+                  <Link onClick={()=> console.log("test")} to='/' className='px-4 py-2 text-white cursor-text bg-blue-500 rounded-md'>
                     View
                   </Link>
                   <button onClick={()=>handleDelete(user._id)} className='px-4 py-2 ml-2 text-white bg-red-500 rounded-md cursor-pointer' style={{cursor : 'pointer'}}>Delete</button>
@@ -97,6 +100,7 @@ const UserComponent = () => {
           </tbody>
         </table>
       </div>
+
     </div>
   );
 };

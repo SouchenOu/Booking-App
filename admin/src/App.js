@@ -8,6 +8,9 @@ import Users from './components/users/Users';
 import { AuthContext } from './components/context/AuthContext';
 import { userColumns } from './components/data';
 import InfoUser from './components/users/InfoUser';
+import Hotels from './components/Hotels/Hotels';
+import NewUsers from './components/users/NewUsers';
+import { userInputs } from './components/formSource';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -38,7 +41,7 @@ function App() {
                     index
                     element={
                       <ProtectedRoute>
-                        <Users data={userColumns} />
+                        <Users/>
                       </ProtectedRoute>
                     }
                   />
@@ -47,8 +50,20 @@ function App() {
                       <InfoUser/>
                     </ProtectedRoute>
                   }/>
+                  <Route path="newUser" element={
+                    <ProtectedRoute>
+                      <NewUsers inputs={userInputs} title="Add New User"/>
+                    </ProtectedRoute>
+                  }/>
             
 
+            </Route>
+            <Route path="hotels">
+              <Route index element={
+                <ProtectedRoute>
+                  <Hotels />
+                </ProtectedRoute>
+              }/>
             </Route>
 
 

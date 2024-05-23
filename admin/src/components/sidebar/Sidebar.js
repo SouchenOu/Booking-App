@@ -47,7 +47,7 @@ const Sidebar = () => {
                         </li>
 
                     </Link>
-                    <Link to="" className=''>
+                    <Link to="/Hotels" className=''>
                         <li className='flex items-center justify-center gap-[10px] pl-[30px] cursor-pointer'>
                             <FontAwesomeIcon icon={faHotel} className='text-[20px]' style={{color : "#7451f8"}}/>
                             <span className='text-[25px] bold-[600]' style={{color : "#888"}}>Hotels</span>

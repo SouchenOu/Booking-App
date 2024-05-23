@@ -2,7 +2,7 @@ import React from 'react'
 
 const MailList = () => {
   return (
-    <div className='w-full mt-[50px] flex flex-col items-center gap-[20px] text-white p-[40px]' style={{background: '#022E51'}}>
+    <div className='w-full mt-[50px] flex flex-col items-center gap-[20px] text-white p-[40px]' style={{background: '#0D19A3'}}>
         <h1 className='text-2xl font-bold'>Save Time, save money</h1>
         <span className='text-xl font-semibold'>Sign Up and we will send the best deals to you</span>
         <div className=' p-[10px] flex justify-between gap-[20px] '>

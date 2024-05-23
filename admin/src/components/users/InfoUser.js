@@ -4,7 +4,6 @@ import Navbar from '../Navbar/Navbar'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
 import Chart from './Chart';
-import List from './List';
 
 const InfoUser = () => {
     const { userId } = useParams();
