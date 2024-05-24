@@ -48,11 +48,19 @@ const Last = () => {
     </div>
     <div className='flex items-center justify-end mt-10 px-6 lg:-mt-60 lg:mr-6'>
         <div className=' flex flex-col p-8 lg:max-w-[500px] xl:max-w-[734px] xl:rounded-5xl xl:px-16 xl:py-20 w-full overflow-hidden rounded-3xl' style={{background : '#0D19A3'}}>
-            <h2 className='text-[24px] font-[400] md:text-[32px] md:font-[400] 2xl:text-[64px] 2xl:font-[400] 2xl:leading-[120%] capitalize text-white'>
-                <strong>Feelling lost</strong> And not Knowing The way?
+            <h2 className='text-[10px] font-[400] md:text-[32px] md:font-[400] 2xl:text-[64px] 2xl:font-[400] 2xl:leading-[120%] capitalize text-white'>
+                <strong>Find Apparetements</strong> For next Trip?
             </h2>
             <p className='text-[14px] font-[400] xl:text-[16px] xl:font-[400] mt-5 text-white'>Starting from the anxiety of the climbers when visiting a new climbing location, the possibility of getting lost is very large. That's why we are here for those of you who want to start an adventure</p>
-            <img src="/morocco.png" alt="" width={186} height={219}/>
+            <div className='flex gap-[10px]'>
+                <img src="/morocco.png" alt="" width={40} height={19}/>
+                <img src="/germany.png" alt="" width={40} height={19}/>
+                <img src="/france.png" alt="" width={40} height={19}/>
+                <img src="/us.png" alt="" width={40} height={19}/>
+
+            </div>
+            
+
         </div>
     </div>
 

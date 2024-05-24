@@ -1,0 +1,16 @@
+.zoom-container {
+    overflow: hidden;
+  }
+  
+  .zoom-container img {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .zoom-container:hover img {
+    transform: scale(1.1);
+  }
+
+
+  .transition-opacity {
+    transition: opacity 1s ease-in-out;
+}

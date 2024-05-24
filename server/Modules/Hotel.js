@@ -13,6 +13,10 @@ const HotelSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
+    Reviews : {
+        type : String,
+        required : true,
+    },
     city:{
         type : String,
         required : true,
@@ -39,13 +43,23 @@ const HotelSchema = new mongoose.Schema({
     rating :{
         type : String,
         min: 0,
-        max: 5,
+        max: 10,
     },
     rooms :{
         type : [String],
     },
+    Taxes : {
+        type : String,
+    },
+    From : {
+        type : String,
+    },
     cheapestPrice:{
         type : Number,
+        required : true,
+    },
+    New :{
+        type : Boolean,
         required : true,
     },
     featured:{

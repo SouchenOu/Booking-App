@@ -8,6 +8,7 @@ import SearchItem from '../../components/SearchItem/SearchItem';
 import MailList from '../../components/mailList/MailList';
 import Footer from '../../components/footer/Footer';
 import useFetch from '../../hooks/useFetch';
+import TryConnect from '../../components/PropertyList/TryConnect';
 
 const List = () => {
   const location = useLocation();
@@ -17,12 +18,14 @@ const List = () => {
   const [openDate, setOpenDate] = useState(false);
   const [max, setMax] = useState(undefined);
   const [min, setMin] = useState(undefined);
+  const [count, setCount] = useState(0); // Add a state to keep track of the count
 
-  const {data, loading , error, reFetch} = useFetch(`http://localhost:8000/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
-  const handleClick = () =>{
-    // reFetch();
-  }
+  const {data, loading, error, reFetch} = useFetch(`http://localhost:8000/hotels?city=${destination}&min=${min || 0}&max=${max || 999}`);
+  console.log("data here in list-->", data);
   
+  const handleClick = () => {
+    reFetch();
+  }
 
   return (
     <div>
@@ -46,7 +49,7 @@ const List = () => {
               <div>
                 <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
                   <span className='text-xl font-bold'>Min price <small>per night</small></span>
-                  <input type='number' className='w-[60px] p-[4px]' onChange={e=>setMin(e.target.value)}  />
+                  <input type='number' className='w-[60px] p-[4px]' onChange={e=>setMin(e.target.value)} />
                 </div>
                 <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
                   <span className='text-xl font-bold'>Max price <small>per night</small></span>
@@ -66,34 +69,30 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{ background: '#022E51', color: 'white' }} onClick={handleClick()}>Search</button>
+            <button className='p-[10px] border-none text-xl font-bold w-full cursor-pointer' style={{ background: '#022E51', color: 'white' }} onClick={handleClick}>Search</button>
           </div>
           <div className='flex-[3]' style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
-            {/* <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem /> */}
             {
-              loading ? ("loading..") : (<>
-              {data.map(elem =>(
-                  <SearchItem elem={elem} key={elem.key}/>
-
-              ))}
-              </>)
+              loading ? ("loading..") : (
+                <>
+                  {data.map((elem, index) => (
+                    <React.Fragment key={elem._id}>
+                      <SearchItem elem={elem} />
+                      {(index + 1) % 5 === 0 && (
+                        <TryConnect/>
+                      )}
+                    </React.Fragment>
+                  ))}
+                </>
+              )
             }
           </div>
         </div>
-        <MailList/>
+        <MailList />
         <div className='mt-[20px]'>
-          <Footer/>
-
+          <Footer />
         </div>
       </div>
-        
     </div>
   );
 };

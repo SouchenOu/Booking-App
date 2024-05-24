@@ -21,6 +21,8 @@ const Hotel = () => {
   const {data, loading, error} = useFetch(`http://localhost:8000/hotels/find/${idFinal}`);
   const [open , setOpen] = useState(false);
   const {dates, options} = useContext(SearchContext);
+  console.log("date here->", dates);
+  console.log("options-->", options);
   const {user} = useContext(AuthContext);
   const MILISECOND_PERdAYS = 1000 *60 * 60 * 24;
   const calculeDayDifference = (date1, date2) => {
