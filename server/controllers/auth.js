@@ -6,11 +6,12 @@ import jwt from "jsonwebtoken"
 
 
 export const register = async (req, res, next) =>{
-   
+  
     try{
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(req.body.password, salt);
        console.log("enter to register");
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(req.body.password, salt);
+        
 
         const newUser = new Users({
             ...req.body,
@@ -84,3 +85,8 @@ export const login = async (req, res, next) => {
         next(err);
       }
 }
+
+export const logout = (req, res) => {
+  console.log("enter to logout");
+  res.clearCookie("access_token").send("Logged out successfully.");
+};

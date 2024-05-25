@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/navbar/navbar';
+import NavbarPicture from '../../components/navbar/navBarPicture';
 
 const Login = () => {
     const {user, error, loading , dispatch} = useContext(AuthContext);
@@ -32,7 +34,9 @@ const Login = () => {
     
 
   return (
-    <section className='bg-gray-100 dark:bg-gray-900'>
+    <div>
+        <NavbarPicture/>
+        <section className='bg-gray-100 dark:bg-gray-900'>
         <div className='flex flex-col items-center justify-center   md:h-screen '>
             <div className=' bg-white rounded-lg border-[2px] border-red shadow px-[100px] py-[100px]'>
                 <div className='flex flex-col items-center justify-center gap-[20px]'>
@@ -48,7 +52,7 @@ const Login = () => {
                             <input  onChange={handleChange}  type="password" id="password"   placeholder="••••••••" style={{ borderColor: '#022E51' }} className="p-2.5 w-full rounded-lg border-[2px] border-gray-400 text-gray-900 focus:border-[5px] block " onFocus={(e) => e.target.style.borderColor = '#4eb1f3'} required=""/>
                         </div>
                         
-                        <button  className="w-full text-white rounded-lg bg-black p-[15px] font-medium cursor-pointer" onClick={handleClick}>Sign in</button>
+                        <button  className="w-full text-white rounded-lg  p-[15px] font-medium cursor-pointer" style={{background: '#0D19A3'}} onClick={handleClick}>Sign in</button>
                         {error && <span>{error}</span>}
                     </div>
                 </div>
@@ -61,6 +65,8 @@ const Login = () => {
         </div>
       
     </section>
+    </div>
+    
   )
 }
 

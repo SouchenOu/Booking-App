@@ -88,7 +88,7 @@ const Header = ({type}) => {
                  <h1 className='text-white  text-[60px] font-bold '> Find your next stay</h1>
                      <p className='mt-[20px] mb-[20px]  text-[40px]'> Search low prices on hotels, homes and much more....</p>
                     {!user && <button className=' p-[10px]  border-[3px]  text-white rounded cursor-pointer' style={{background : '#B74803'}}> SignIn / Register</button>} 
-                     <div className='h-[80px]  flex items-center justify-between border-solid border-[7px] border-[#E4C580]   p-6 rounded-lg absolute bottom-[-25px]  w-[1500px]' style={{background:'#fff'}} >
+                     <div className='h-[80px]  flex items-center justify-between border-solid border-[7px] border-[#E4C580]   p-6 rounded-lg absolute bottom-[-60px]  w-[1500px]' style={{background:'#fff'}} >
                          <div className='gap-[10px] flex items-center' >
                              <FontAwesomeIcon icon={faBed} className='text-[30px]' style={{color: 'gray'}}/>
                              <input onChange={(e) => setDestination(e.target.value)} type='text'  placeholder="Where are you going?" className='border-none outline-none text-[20px] font-bold	' style={{color :'gray'}}/>
