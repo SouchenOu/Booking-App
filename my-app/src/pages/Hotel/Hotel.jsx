@@ -10,6 +10,7 @@ import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
 import { AuthContext } from '../../context/AuthContext'
 import Reserve from '../reserve/Reserve'
+import './Hotel.css'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -19,10 +20,10 @@ const Hotel = () => {
   const id = location.pathname.split("/");
   const idFinal = id[2];
   const {data, loading, error} = useFetch(`http://localhost:8000/hotels/find/${idFinal}`);
+  console.log("data here hotel--", data);
   const [open , setOpen] = useState(false);
   const {dates, options} = useContext(SearchContext);
-  console.log("date here->", dates);
-  console.log("options-->", options);
+  
   const {user} = useContext(AuthContext);
   const MILISECOND_PERdAYS = 1000 *60 * 60 * 24;
   const calculeDayDifference = (date1, date2) => {
@@ -108,35 +109,38 @@ const Hotel = () => {
       <Navbar/>
       <Header type="list"/>
       <div className=' flex flex-col  mt-[20px] p-[20px] items-center'>
-        {open && <div className='sticky top-[0] left-[0] w-[80vw] h-[100vh] z-[999] flex items-center' style={{background : 'rgba(212, 211, 211, 0.613)'}}>
+        {open && <div className='sticky top-[0] left-[0] w-[80vw] h-[100vh] z-[999] flex items-center' style={{background : 'rgba(240, 240, 240, 0.613)'}}>
         <div className='absolute top-[100px] left-[200px]'>
           <FontAwesomeIcon icon={faCircleXmark} className='top-[0] left-[0] w-[40px] h-[40px]  cursor-pointer sticky' style={{color : 'rgba(0, 0, 0, 0.613)'}} onClick={()=>setOpen(false)}  />
         </div>
-          <FontAwesomeIcon icon={faCircleArrowLeft} className='cursor-pointer m-[20px] text-2xl w-[70px] h-[70px]' style={{color : 'lightgray'}} onClick={()=>handleMove("left")}/>
+          <FontAwesomeIcon icon={faCircleArrowLeft} className='cursor-pointer m-[20px] text-2xl w-[50px] h-[50px]' style={{color : 'lightgray'}} onClick={()=>handleMove("left")}/>
           <div className='w-full h-full flex items-center justify-center'>
-            <img  className='h-[900px] w-[1000px] cursor-pointer' src={pictures[slideNumber].src} alt=""/>
+            <img  className='h-[900px] w-[1000px] cursor-pointer' src={data.photos[slideNumber]} alt=""/>
           </div>
-          <FontAwesomeIcon icon={faCircleArrowRight} className='cursor-pointer m-[20px] text-2xl w-[70px] h-[70px]' style={{color : 'lightgray'}} onClick={()=>handleMove("right")}/>
+          <FontAwesomeIcon icon={faCircleArrowRight} className='cursor-pointer m-[20px] text-2xl w-[50px] h-[50px]' style={{color : 'lightgray'}} onClick={()=>handleMove("right")}/>
           
           </div>}
-        <div className='w-full w-max-[1000px] flex flex-col gap-[20px]'>
-          <button onClick={handleClick} className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[200px] borded-none rounded-lg ' style={{background: '#022E51'}}>Reserve or book now</button>
-          <h1 className='text-2xl'>{data.name}</h1>
+        <div className='w-full w-max-[2000px] flex flex-col gap-[20px]'>
+          <button onClick={handleClick} className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[500px] borded-none rounded-lg ' style={{background: '#0D19A3'}}>Reserve or book now</button>
+          <h1 className='text-[30px] font-bold'>{data.name}</h1>
           <div className='flex gap-[4px] items-center'>
             <FontAwesomeIcon icon={faLocationDot}/>
-            <span className='text-xl'>Elton St 125 New york</span>
+            <span className='text-xl'>{data.address}</span>
           </div>
-          <span className='text-xl font-bold' style={{color : '#B74803'}}>Excelent location -500m from center</span>
-          <span className='text-xl' style={{color : 'green'}}>{data.desc} Book a stay over $117 at this property and get a free airport taxi</span>
-          <div className='flex gap-[10px]  flex-wrap '>
-            {pictures.map((elem, index)=>(
-              <div>
-                <img onClick={()=>handleOpen(index)} className="w-[500px] h-[400px] object-cover" src={elem.src} alt=""/>
-              </div>
-            )
-
-            )}
-          </div>
+          <span className='text-xl font-bold' style={{color : '#B74803'}}>{data.distance}</span>
+          <span className='text-xl' style={{color : 'green'}}>{data.desc} {data.Taxes}</span>
+          <div className='flex gap-[10px] flex-wrap '>
+                  {data?.photos?.map((photo, index) => (
+                    <div key={index} className='zoom-container'>
+                      <img
+                        onClick={() => handleOpen(index)}
+                        className="w-[500px] h-[400px] object-cover cursor-pointer "
+                        src={photo}
+                        alt={`hotel-img-${index}`}
+                      />
+                    </div>
+                  ))}
+                </div>
           <div className='flex space-between gap-[20px] mt-[20px]'>
             <div className='flex-[3]'>
               <h1 className='text-2xl font-bold ' style={{color : '#B74803'}}>Stayin the heart of Krakow</h1>
@@ -152,7 +156,7 @@ const Hotel = () => {
               <h1 className='text-2xl font-bold' style={{color  : '#CC6D3D'}}>Perfect for a {days} night stay</h1>
               <span className='text-xl'>Located in real heart of krakow, this property has an excelent location score of 9.8 ! </span>
               <h2 className='text-xl font-bold '> ${days * data.cheapestPrice * options.room} {days} nights</h2>
-              <button onClick={handleClick} className='text-white text-xl font-extrabold rounded-lg border-none border-[3px] border-gray-500 p-[9px]' style={{background : '#022E51'}}>Reserve or book now</button>
+              <button onClick={handleClick} className='text-white text-xl font-extrabold rounded-lg border-none border-[3px] border-gray-500 p-[9px]' style={{background : '#0D19A3'}}>Reserve or book now</button>
             </div>
           </div>
         </div>
