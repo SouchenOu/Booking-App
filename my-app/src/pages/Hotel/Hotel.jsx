@@ -11,6 +11,8 @@ import { SearchContext } from '../../context/SearchContext'
 import { AuthContext } from '../../context/AuthContext'
 import Reserve from '../reserve/Reserve'
 import './Hotel.css'
+import NavbarPicture from '../../components/navbar/navBarPicture'
+import HeaderPicture from '../../components/header/headerPicture'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -107,7 +109,7 @@ const Hotel = () => {
   return (
     <div>
       <Navbar/>
-      <Header type="list"/>
+      <HeaderPicture type="list"/>
       <div className=' flex flex-col  mt-[20px] p-[20px] items-center'>
         {open && <div className='sticky top-[0] left-[0] w-[80vw] h-[100vh] z-[999] flex items-center' style={{background : 'rgba(240, 240, 240, 0.613)'}}>
         <div className='absolute top-[100px] left-[200px]'>
@@ -121,7 +123,7 @@ const Hotel = () => {
           
           </div>}
         <div className='w-full w-max-[2000px] flex flex-col gap-[20px]'>
-          <button onClick={handleClick} className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[500px] borded-none rounded-lg ' style={{background: '#0D19A3'}}>Reserve or book now</button>
+          <button onClick={handleClick} className='text-white text-2xl font-bold absolute p-[9px] w-[300px] right-12 top-[900px] borded-none rounded-lg ' style={{background: '#0D19A3'}}>Reserve or book now</button>
           <h1 className='text-[30px] font-bold'>{data.name}</h1>
           <div className='flex gap-[4px] items-center'>
             <FontAwesomeIcon icon={faLocationDot}/>

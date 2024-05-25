@@ -10,6 +10,7 @@ import ListCheck from '../../components/PropertyList/ListCheck'
 import Explore from '../../components/PropertyList/Explore'
 import Inspiration from '../../components/PropertyList/Inspiration'
 import Last from '../../components/PropertyList/Last'
+import ListFinal from '../../components/PropertyList/ListFinal'
 
 const Home = () => {
   return (
@@ -31,7 +32,7 @@ const Home = () => {
         <FeaturesProperties/>
         <Inspiration/>
         <Last/>
-
+        <ListFinal/>
         <MailList/>
 
         <Footer/>
