@@ -1,0 +1,8 @@
+export const reducerCases = {
+    SET_USER_INFO : "SET_USER_INFO",
+    SET_MESSAGES : "SET_MESSAGES",
+    SET_SOCKET : "SET_SOCKET",
+    SET_CONVERSATIONS : "SET_CONVERSATIONS",
+
+    
+}

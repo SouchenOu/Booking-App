@@ -5,13 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SearchContextProvider } from './context/SearchContext';
 import { AuthContextProvider } from './context/AuthContext';
+// import { StateProvider } from "@/context/StateContext";
+// import reducer, { initialState } from "@/context/StateReducers";
+import { StateProvider } from './pages/context/StateContext';
+import reducer, { initialeState } from './pages/context/StateReducers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <React.StrictMode>
     <SearchContextProvider>
       <AuthContextProvider>
+      <StateProvider initialState={initialeState} reducer={reducer} >
+
           <App />
+      </StateProvider>
+
       </AuthContextProvider>
     </SearchContextProvider>
   </React.StrictMode>

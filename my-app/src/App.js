@@ -5,6 +5,7 @@ import Hotel from "./pages/Hotel/Hotel";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Contact from "./pages/Contact/Contact";
+import Message from "./pages/Message/Message";
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
+        <Route path="/message" element={<Message/>}></Route>
 
       </Routes>
     </BrowserRouter>
