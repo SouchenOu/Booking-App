@@ -11,6 +11,7 @@ import InfoUser from './components/users/InfoUser';
 import Hotels from './components/Hotels/Hotels';
 import NewUsers from './components/users/NewUsers';
 import { userInputs } from './components/formSource';
+import Message from './components/Message/Message';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -36,6 +37,7 @@ function App() {
 
               </Route>
               <Route path="login" element={<Login/>}/>
+              <Route path="message" element={<Message/>}/>
               <Route path="users" >
                 <Route
                     index

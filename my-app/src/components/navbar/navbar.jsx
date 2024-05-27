@@ -28,6 +28,9 @@ const Navbar = () => {
     // Reset user state
     // Redirect the user to the login page
     };
+    const contactUs = () =>{
+      navigate('/contact');
+    }
   return (
     
     <div className="h-[70px] justify-center flex" style={{ background: '#0D19A3' }}>
@@ -39,6 +42,7 @@ const Navbar = () => {
           {!user ? <div className="flex items-center justify-center gap-[30px] w-full">
                 <button className="px-4 py-2 mr-4 text-[20px] font-[300px]  bg-white rounded cursor-pointer" onClick={navigateRegister} style={{color : '#022E51'}}>Register</button>
                 <button className="px-4 py-2 ml-4 text-[20px] font-[300px] bg-white rounded cursor-pointer" onClick={navigateFunc} style={{color: '#022E51'}}>Login</button>
+                <button className='text-[30px] font-[300px] cursor-pointer underline' onClick={contactUs}>Contact Us</button>
                 
             </div> : <div className='w-[300px]'>
                   {user &&
@@ -52,6 +56,7 @@ const Navbar = () => {
 
 
                 </div>}
+
             
             
         </div>

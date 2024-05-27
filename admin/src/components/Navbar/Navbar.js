@@ -8,12 +8,19 @@ import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import {faMessage} from "@fortawesome/free-solid-svg-icons";
 import {faBars} from "@fortawesome/free-solid-svg-icons"
+import {  useNavigate } from 'react-router-dom'
 
 
 
 
 const Navbar = () => {
-    const {dispatch} = useContext(DarkModeContext)
+    const {dispatch} = useContext(DarkModeContext);
+    const navigate = useNavigate();
+
+    const EnterMessage = () =>{
+      navigate('/message');
+
+    }
   return (
     <div className='h-[53px] border-[0.5px] border-solid  border-gray-300 flex items-center  text-[14px]' style={{color : "black"}}>
       <div className='w-[100%] p-[20px]  flex items-center justify-between'>
@@ -38,8 +45,8 @@ const Navbar = () => {
                 <div className='w-[19px] h-[19px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>1</div>
 
             </div>
-            <div className='flex items-center mr-[20px] font-bold relative'>
-                <FontAwesomeIcon icon={faMessage} className='text-[28px]'/>
+            <div className='flex items-center mr-[20px] font-bold relative' onClick={EnterMessage}>
+                <FontAwesomeIcon icon={faMessage} className='text-[28px] cursor-pointer'/>
                 <div className='w-[19px] h-[19px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>3</div>
             </div>
             <div className='flex items-center mr-[20px] font-bold relative'>
