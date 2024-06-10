@@ -40,10 +40,7 @@ const Hotels = () => {
 
   const handleDelete = async (id) => {
 
-    console.log("id here-->", id);
-    console.log("just enter delete");
     try{
-        console.log("enter to delete user");
         await axios.delete('http://localhost:8000/hotels');
         ToastSuccess(`Delete succefully !`);
 
@@ -53,7 +50,6 @@ const Hotels = () => {
     }
   };
   const testFunction = () =>{
-    console.log("test herere")
   }
 
   return (

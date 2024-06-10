@@ -1,11 +1,14 @@
 import React from 'react'
 import SideBar from './SideBar'
-import MessageBar from './MessageBar'
+import Chat from './Chat'
+import ConversationPanel from './ConversationPanel'
+import { useStateProvider } from '../context/StateContext'
 
 
 const Message = () => {
+    const [{userInfo, currentChatUser}] = useStateProvider();
   return (
-        <div className="h-screen w-full flex antialiased text-gray-200 bg-gray-900 overflow-hidden">
+        <div className="h-screen w-full flex  text-gray-200 bg-[#11185e] overflow-hidden">
                 <div className="flex-1 flex flex-col">
                     <div className="border-b-2 border-gray-800 p-2 flex flex-row z-20">
                         <div className="bg-red-600 w-3 h-3 rounded-full mr-2"></div>
@@ -13,7 +16,7 @@ const Message = () => {
                         <div className="bg-green-500 w-3 h-3 rounded-full mr-2"></div>
                     </div>
                     <main className="flex-grow flex flex-row min-h-0">
-                        <section className="flex flex-col flex-none overflow-auto w-24 hover:w-64 group lg:max-w-sm md:w-2/5 transition-all duration-300 ease-in-out">
+                        <section className="flex flex-col flex-none overflow-auto w-24   lg:max-w-sm md:w-2/5 ">
                             <div className="header p-4 flex flex-row justify-between items-center flex-none">
                                 <div className="w-16 h-16 relative flex flex-shrink-0" >
                                     <img className="rounded-full w-full h-full object-cover" alt="ravisankarchinnam"
@@ -50,7 +53,8 @@ const Message = () => {
                             </div>
                         </section>
                         <section className="flex flex-col flex-auto border-l border-gray-800">
-                            <MessageBar/>
+                        {currentChatUser ? 
+                            <div className=""> <Chat />  </div>: <ConversationPanel/>}
                         </section>
                     </main>
                 </div>

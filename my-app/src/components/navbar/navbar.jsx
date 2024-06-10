@@ -5,13 +5,13 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = () => {
+const Navbar = ({openMessage, setOpenMessage}) => {
   const {user, dispatch} = useContext(AuthContext);
   const navigate = useNavigate()
 
-  console.log("user here navbar-->", user);
   const MessageBar = () =>{
-    navigate('/message');
+    // navigate('/message');
+    setOpenMessage(!openMessage);
   }
   
     const navigateFunc = () =>{
@@ -48,15 +48,12 @@ const Navbar = () => {
           {!user ? <div className="flex items-center justify-center gap-[30px] w-full">
                 <button className="px-4 py-2 mr-4 text-[20px] font-[300px]  bg-white rounded cursor-pointer" onClick={navigateRegister} style={{color : '#022E51'}}>Register</button>
                 <button className="px-4 py-2 ml-4 text-[20px] font-[300px] bg-white rounded cursor-pointer" onClick={navigateFunc} style={{color: '#022E51'}}>Login</button>
-                <button className='text-[30px] font-[300px] cursor-pointer underline' onClick={contactUs}>Contact Us</button>
-                <div className='flex items-center mr-[20px] font-bold relative' onClick={MessageBar}>
-                  <FontAwesomeIcon icon={faMessage} className='text-[28px] cursor-pointer' />
-                  <div className='w-[19px] h-[19px] bg-[red] rounded-full flex items-center justify-center text-[15px] font-bold absolute top-[-5px] right-[-5px]' style={{color : "white"}}>3</div>
-              </div>
-            </div> : <div className=' flex items-center justify-center w-[1500px]'>
+                
+            </div> : 
+            <div className=' flex items-center justify-center w-[1500px]'>
                   {user &&
                       <div className='flex gap-[30px]'>
-                        <span className='text-[30px]  bold-[400px] flex gap-[10px]'> welcome <h1 className='text-[#F4EFC1] text-[30px] font-[400px]'>{user.details.username}</h1></span>
+                        {/* <span className='text-[30px]  bold-[400px] flex gap-[10px]'> welcome <h1 className='text-[#F4EFC1] text-[30px] font-[400px]'>{user?.details.username}</h1></span> */}
                         <button className='text-[30px] font-[300px] cursor-pointer underline' onClick={contactUs}>Contact Us</button>
                         <div className='flex items-center mr-[20px] font-bold relative' onClick={MessageBar}>
                           <FontAwesomeIcon icon={faMessage} className='text-[28px] cursor-pointer' />

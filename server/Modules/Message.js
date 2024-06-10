@@ -4,9 +4,7 @@ const { Schema } = mongoose;
 
 // Define the User schema (assuming it has at least an id field)
 const userSchema = new Schema({
-  // Define the fields for the User model
-  // Example:
-  // username: { type: String, required: true, unique: true },
+  
 });
 
 const User = mongoose.model("User", userSchema);

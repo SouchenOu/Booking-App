@@ -5,7 +5,6 @@ export const createHotel = async (req, res, next) =>{
     const newHotel = new Hotel(req.body);
 
     try{
-
         const savedHotel = await newHotel.save();
         res.status(200).json(savedHotel);
 
@@ -116,6 +115,7 @@ export const getHotelRooms = async (req, res, next) =>{
 
 export const getFeaturesHotel = async (req, res, next) =>{
     try{
+        //Purpose: req.query is used to retrieve query string parameters from the URL. These parameters are typically used to filter, sort, or provide additional options for the request.
         const featured = await Hotel.find(req.query);
         res.status(200).json(featured);
     }catch(err){

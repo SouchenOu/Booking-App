@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 const UserComponent = () => {
   const location = useLocation();
 
-  console.log("location here-->",location);
     const ToastError = (message) => {
 		toast.error(message, {
 		  position: toast.POSITION.TOP_RIGHT,
@@ -41,10 +40,7 @@ const UserComponent = () => {
 
   const handleDelete = async (id) => {
 
-    console.log("id here-->", id);
-    console.log("just enter delete");
     try{
-        console.log("enter to delete user");
         await axios.delete('http://localhost:8000/users');
         ToastSuccess(`Delete succefully !`);
 
@@ -54,7 +50,6 @@ const UserComponent = () => {
     }
   };
   const testFunction = () =>{
-    console.log("test herere")
   }
 
   return (

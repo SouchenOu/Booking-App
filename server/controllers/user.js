@@ -22,7 +22,6 @@ export const UpdateUser = async (req, res) =>{
 export const DeleteUser = async (req, res) =>{
     try{
         const user = await Users.findByIdAndDelete(req.params.id);
-        console.log("res here delete-->", user);
         res.status(200).json("User has been deleted");
 
     }catch(err){
@@ -34,7 +33,6 @@ export const DeleteUser = async (req, res) =>{
 
 export const getUser = async (req, res) =>{
     try{
-        console.log("enter to here get user");
         const User =  await Users.findById(req.params.id);
          res.status(200).json(User)
  

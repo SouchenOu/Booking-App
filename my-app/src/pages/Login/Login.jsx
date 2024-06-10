@@ -25,12 +25,8 @@ const Login = () => {
         authDispatch({ type: "LOGIN_START" });
         try {
             const login_response = await axios.post("http://localhost:8000/auth/login", infoUser);
-            console.log("login data-->", login_response);
-            dispatch({
-                type: reducerCases.SET_USER_INFO,
-                userInfo: login_response.data.details, // Assuming the response contains user data
-            });
-            console.log("user connect-->", login_response.data.details)
+            console.log("data login-->", login_response);
+            dispatch({type: reducerCases.SET_USER_INFO, userInfo: login_response.data.user});
 
             navigate("/");
             authDispatch({ type: "LOGIN_SUCCESS", payload: login_response.data });

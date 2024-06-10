@@ -8,20 +8,17 @@ import Chart from './Chart';
 const InfoUser = () => {
     const { userId } = useParams();
     const [user, setUser] = useState([]);
-    console.log("id here-->", userId);
     useEffect(()=>{
         const getUser = async () =>{
             try{
                 const info = await axios.get(`http://localhost:8000/users/${userId}`);
                 setUser(info.data);
-                console.log("info user here-->", info);
             }catch(err){
                 console.log(err);
             }
         }
         getUser();
     },[])
-    console.log("user result-->", user.username);
   return (
     <div className='flex w-full'>
         <Sidebar/>

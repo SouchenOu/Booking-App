@@ -24,8 +24,6 @@ const NewUsers = ({ inputs, title }) => {
       const newUser = {
         ...info,
       };
-      console.log("newUser-->", newUser);
-      console.log("info-->", info);
       await axios.post("http://localhost:8000/auth/register", newUser);
     } catch (err) {
       console.log(err);

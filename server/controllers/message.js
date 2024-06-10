@@ -6,7 +6,6 @@ import Users from "../Modules/Users.js";
 export const createMessage = async (req, res, next) => {
   try {
     const { content, fromId, toId } = req.body;
-    // const getUser = onlineUsers.get(toId);
 
     if (content && fromId && toId) {
       const sendMessage = new Message({
@@ -30,8 +29,7 @@ export const createMessage = async (req, res, next) => {
 export const getMessage = async (req, res, next) => {
     try {
       const { fromId, toId } = req.params;
-      console.log("fromId-->", fromId);
-      console.log("toId", toId);
+     
   
       const allMessages = await Message.find({
         $or: [
@@ -43,7 +41,6 @@ export const getMessage = async (req, res, next) => {
       .populate('sender'); // Populate the sender field
   
       
-      console.log("allMessages-->", allMessages);
       
   
       return res.status(200).send({ messages: allMessages });
@@ -56,7 +53,6 @@ export const getMessage = async (req, res, next) => {
     try {
         const userId = req.params.fromId;
 
-        // Find messages where the user is either the sender or recipient
         const messages = await Message.find({
             $or: [
                 { sender: new mongoose.Types.ObjectId(userId) },
@@ -66,28 +62,53 @@ export const getMessage = async (req, res, next) => {
         .populate('sender')
         .populate('recipient')
         .sort({ createdAt: -1 });
-        console.log("message here--->", messages);
 
-        // Collect unique user IDs that have communicated with the given user
         const userIds = [];
+        const latestMessages = {};
 
         messages.forEach(msg => {
-            console.log("sender msg here-->, userId", msg.sender.id, userId);
-            console.log("recipient msg here-->, userId", msg.recipient.id, userId);
+            
             if (msg.sender.id !== userId) {
                 userIds.push(msg.sender.id);
+                if (!latestMessages[msg.sender.id] || msg.createdAt > latestMessages[msg.sender.id].createdAt) {
+                  latestMessages[msg.sender.id] = msg;
+              }
             }
             if (msg.recipient.id !== userId) {
                 userIds.push(msg.recipient.id);
+                if (!latestMessages[msg.recipient.id] || msg.createdAt > latestMessages[msg.recipient.id].createdAt) {
+                  latestMessages[msg.recipient.id] = msg;
+              }
             }
         });
-        console.log("first userId, ", userIds);
-        // console.log("object-->", userObjectIds);
         const users = await Users.find({ _id: { $in: userIds} });
-        console.log("users hna final-->", users);
-
+   
+      const response = {
+        users: users.map(user => {
+            const lastMessage = latestMessages[user._id.toString()];
+            return {
+                _id: user._id,
+                username: user.username,
+                lastMessage: lastMessage ? {
+                    _id: lastMessage._id,
+                    type: lastMessage.type,
+                    content: lastMessage.content,
+                    messageStatus: lastMessage.messageStatus,
+                    createdAt: lastMessage.createdAt,
+                    sender: {
+                        _id: lastMessage.sender._id,
+                        username: lastMessage.sender.username
+                    },
+                    recipient: {
+                        _id: lastMessage.recipient._id,
+                        username: lastMessage.recipient.username
+                    }
+                } : null
+            };
+        })
+    };
         
-        res.status(200).json({ users });
+        res.status(200).json({ response });
 
     } catch (err) {
         next(err);
