@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import NavbarPicture from '../../components/navbar/navBarPicture';
 import { reducerCases } from '../context/constent';
 import { useStateProvider } from '../context/StateContext';
+import {Card, Flex, Form, Typography, Input, Button } from 'antd'
+
 
 const Login = () => {
     const { user, error, loading, dispatch: authDispatch } = useContext(AuthContext);
@@ -50,29 +52,32 @@ const Login = () => {
 //   },[currentChatUser]);
 
     return (
-        <div>
+        <div className='bg-gray-800'>
             <NavbarPicture />
-            <section className='bg-gray-100 dark:bg-gray-900'>
-                <div className='flex flex-col items-center justify-center md:h-screen'>
-                    <div className='bg-white rounded-lg border-[2px] border-red shadow px-[100px] py-[100px]'>
-                        <div className='flex flex-col items-center justify-center gap-[20px]'>
-                            <h1 className='text-[40px] font-bold flex items-start justify-start'>Sign in to your account</h1>
-                            <div className="space-y-4 md:space-y-6 w-full">
-                                <div className='flex flex-col'>
-                                    <label htmlFor="username" className="text-[20px] font-[300px] flex items-start justify-start">Your username</label>
-                                    <input onChange={handleChange} type="text" id="username" style={{ borderColor: '#022E51' }} className="p-2.5 w-full rounded-lg border-[2px] border-gray-400 text-gray-900 focus:border-[5px] block" onFocus={(e) => e.target.style.borderColor = '#4eb1f3'} placeholder="Enter your username" required />
-                                </div>
-                                <div>
-                                    <label htmlFor="password" className="text-[20px] font-[300px] flex items-start justify-start">Password</label>
-                                    <input onChange={handleChange} type="password" id="password" placeholder="••••••••" style={{ borderColor: '#022E51' }} className="p-2.5 w-full rounded-lg border-[2px] border-gray-400 text-gray-900 focus:border-[5px] block" onFocus={(e) => e.target.style.borderColor = '#4eb1f3'} required />
-                                </div>
-                                <button className="w-full text-white rounded-lg p-[15px] font-medium cursor-pointer" style={{ background: '#0D19A3' }} onClick={handleClick}>Sign in</button>
-                                {error && <span>{error}</span>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
+            <Card className=" bg-gray-100 flex items-center justify-center  h-screen">
+
+                <Flex>
+                    <Flex vertical flex={1} className='flex flex-col items-center justify-center bg-white py-[100px] px-[100px] '>
+                        <Typography.Title level={3} strong className="text-center text-[50px] font-bold">SignUp</Typography.Title>
+                        <Typography.Text type="secondary" strong className="text-center">Join for exclusive access</Typography.Text>
+                        <Form layout="vertical" onFinish={handleClick} autoComplete='off'>
+                          
+                            <Form.Item className="text-[30px] font-bold" label="Email" name="email" rules={[{required : true, message : "Please input your email"}]}>
+                                <Input placeholder="Enter your Email" className='px-[10px] w-[500px] py-[10px]'></Input>
+                            </Form.Item>
+                           
+                            <Form.Item className="text-[30px] font-bold" label="password" name="password" rules={[{required : true, message : "Please input your password"}]}>
+                                <Input placeholder="Enter your password" className='px-[10px] w-[500px] py-[10px]'></Input>
+                            </Form.Item>
+                            <Form.Item >
+                                <Button type="primary" htmlType="Submit" size="large" className='w-full text-white bg-[#0D19A3] rounded-lg p-[15px] font-medium cursor-pointer'>Create Account</Button>
+                            </Form.Item>
+                        </Form>
+                    </Flex>
+                </Flex>
+            </Card>
+
         </div>
     )
 }

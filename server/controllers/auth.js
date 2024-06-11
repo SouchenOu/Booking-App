@@ -8,7 +8,7 @@ import CreateError from "../utils/error.js"
 
 export const register = async (req, res, next) =>{
   
-
+console.log("register backend");
   try{
     const user = await Users.findOne({email : req.body.email});
     console.log("user register-->", user);
@@ -23,7 +23,7 @@ export const register = async (req, res, next) =>{
           ...req.body,
           password: hashedPassword ,
       });
-
+      console.log("newUser backend-->", newUser);
       const token = jwt.sign({_id : newUser._id}, 'secretkey123' , {expiresIn : '90d'})
       await newUser.save();
       res.status(200).json({status : 'success', message: 'User registered succefully ', token});

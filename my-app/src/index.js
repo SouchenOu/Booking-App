@@ -9,6 +9,7 @@ import { AuthContextProvider } from './context/AuthContext';
 // import reducer, { initialState } from "@/context/StateReducers";
 import { StateProvider } from './pages/context/StateContext';
 import reducer, { initialeState } from './pages/context/StateReducers';
+import { AuthProvider } from './context/AuthenticationContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,10 +17,11 @@ root.render(
   <React.StrictMode>
     <SearchContextProvider>
       <AuthContextProvider>
-      <StateProvider initialState={initialeState} reducer={reducer} >
-
-          <App />
-      </StateProvider>
+        <AuthProvider>
+          <StateProvider initialState={initialeState} reducer={reducer} >
+             <App />
+          </StateProvider>
+        </AuthProvider>
 
       </AuthContextProvider>
     </SearchContextProvider>
