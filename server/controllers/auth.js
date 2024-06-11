@@ -100,6 +100,7 @@ export const login = async (req, res, next) => {
 
   try {
     const user = await Users.findOne({ username: req.body.username });
+    console.log("user backend login-->", user);
     if(!user) return next(new CreateError('User not found', 404));
     // if (!user) return res.status(401).json("Wrong username, SignUp please!");
 

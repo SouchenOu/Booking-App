@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import NavbarPicture from '../../components/navbar/navBarPicture';
 import { reducerCases } from '../context/constent';
 import { useStateProvider } from '../context/StateContext';
-import {Card, Flex, Form, Typography, Input, Button } from 'antd'
+import {Card, Flex, Form, Typography, Input, Button,  Spin, Alert } from 'antd'
+import useLogin from '../../hooks/useLogin';
+
 
 
 const Login = () => {
-    const { user, error, loading, dispatch: authDispatch } = useContext(AuthContext);
-    const [{ userInfo }, dispatch] = useStateProvider(); // Destructure state and dispatch
+
+    const {loading, error, loginUser} = useLogin();
+    const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
 
     const [infoUser, setInfoUser] = useState({
@@ -22,19 +25,27 @@ const Login = () => {
         setInfoUser((prev) => ({ ...prev, [ e.target.id]: e.target.value }));
     }
 
-    const handleClick = async (e) => { 
-        e.preventDefault();
-        authDispatch({ type: "LOGIN_START" });
-        try {
-            const login_response = await axios.post("http://localhost:8000/auth/login", infoUser);
-            console.log("data login-->", login_response);
-            dispatch({type: reducerCases.SET_USER_INFO, userInfo: login_response.data.user});
+    const handleClick = async (values) => { 
+        // e.preventDefault();
+        // authDispatch({ type: "LOGIN_START" });
+        // try {
+        //     const login_response = await axios.post("http://localhost:8000/auth/login", infoUser);
+        //     console.log("data login-->", login_response);
+        //     dispatch({type: reducerCases.SET_USER_INFO, userInfo: login_response.data.user});
 
-            navigate("/");
-            authDispatch({ type: "LOGIN_SUCCESS", payload: login_response.data });
-        } catch (err) {
-            alert(err.response.data);
-            authDispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+        //     navigate("/");
+        //     authDispatch({ type: "LOGIN_SUCCESS", payload: login_response.data });
+        // } catch (err) {
+        //     alert(err.response.data);
+        //     authDispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+        // }
+        const result = await loginUser(values);
+        console.log("login result->", result);
+        if (result.success) {
+            setSuccess(result.message);
+            navigate("/login"); // Navigate to login page after successful registration
+        } else {
+            setSuccess(null);
         }
     }
 
@@ -63,15 +74,19 @@ const Login = () => {
                         <Typography.Text type="secondary" strong className="text-center">Join for exclusive access</Typography.Text>
                         <Form layout="vertical" onFinish={handleClick} autoComplete='off'>
                           
-                            <Form.Item className="text-[30px] font-bold" label="Email" name="email" rules={[{required : true, message : "Please input your email"}]}>
-                                <Input placeholder="Enter your Email" className='px-[10px] w-[500px] py-[10px]'></Input>
+                            <Form.Item className="text-[30px] font-bold" label="Username" name="username" rules={[{required : true, message : "Please input your username"}]}>
+                                <Input placeholder="Enter your username" className='px-[10px] w-[500px] py-[10px]'></Input>
                             </Form.Item>
                            
                             <Form.Item className="text-[30px] font-bold" label="password" name="password" rules={[{required : true, message : "Please input your password"}]}>
                                 <Input placeholder="Enter your password" className='px-[10px] w-[500px] py-[10px]'></Input>
                             </Form.Item>
+                            {error && <Alert description={error} type='error' showIcon closable className="mb-[2.3rem]" />}
+                            {success && <Alert description={success} type='success' showIcon closable className="mb-[2.3rem]" />}    
                             <Form.Item >
-                                <Button type="primary" htmlType="Submit" size="large" className='w-full text-white bg-[#0D19A3] rounded-lg p-[15px] font-medium cursor-pointer'>Create Account</Button>
+                                <Button type="primary" htmlType="Submit" size="large" className='w-full text-white bg-[#0D19A3] rounded-lg p-[15px] font-medium cursor-pointer'>
+                                    {loading ? <Spin/> : 'SignIn'}
+                                </Button>
                             </Form.Item>
                         </Form>
                     </Flex>

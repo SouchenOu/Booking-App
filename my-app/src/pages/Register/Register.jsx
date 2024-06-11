@@ -3,8 +3,6 @@ import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import NavbarPicture from '../../components/navbar/navBarPicture';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {Card, Flex, Form, Typography, Input, Button, Spin, Alert } from 'antd'
 import useSignUp from '../../hooks/useSignUp';
 
@@ -35,7 +33,6 @@ const Register = () => {
             navigate("/login"); // Navigate to login page after successful registration
         } else {
             setSuccess(null);
-            ToastError(result.message);
         }
         // e.preventDefault();
         // dispatch({ type: "LOGIN_START" });
