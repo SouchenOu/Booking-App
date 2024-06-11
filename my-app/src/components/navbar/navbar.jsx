@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthContext'
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../context/AuthenticationContext';
 
 const Navbar = ({openMessage, setOpenMessage}) => {
   const {user, dispatch} = useContext(AuthContext);
@@ -22,12 +23,9 @@ const Navbar = ({openMessage, setOpenMessage}) => {
       navigate("/register");
 
     }
+    const {userData, logout, isAuthenticated} = useAuth();
     const handleLogout = async () => {
-      // Clear authentication token from cookies or local storage
-    // document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      await axios.get('http://localhost:8000/auth/logout');
-      dispatch({type : "LOGOUT"});
-      navigate("/login");
+      await logout();
       
 
 
@@ -45,13 +43,13 @@ const Navbar = ({openMessage, setOpenMessage}) => {
             <span className="font-bold text-[40px] cursor-pointer ">Booking.com</span>
 
           </Link>
-          {!user ? <div className="flex items-center justify-center gap-[30px] w-full">
+          {!isAuthenticated? <div className="flex items-center justify-center gap-[30px] w-full">
                 <button className="px-4 py-2 mr-4 text-[20px] font-[300px]  bg-white rounded cursor-pointer" onClick={navigateRegister} style={{color : '#022E51'}}>Register</button>
                 <button className="px-4 py-2 ml-4 text-[20px] font-[300px] bg-white rounded cursor-pointer" onClick={navigateFunc} style={{color: '#022E51'}}>Login</button>
                 
             </div> : 
             <div className=' flex items-center justify-center w-[1500px]'>
-                  {user &&
+                  {isAuthenticated &&
                       <div className='flex gap-[30px]'>
                         {/* <span className='text-[30px]  bold-[400px] flex gap-[10px]'> welcome <h1 className='text-[#F4EFC1] text-[30px] font-[400px]'>{user?.details.username}</h1></span> */}
                         <button className='text-[30px] font-[300px] cursor-pointer underline' onClick={contactUs}>Contact Us</button>

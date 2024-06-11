@@ -79,10 +79,15 @@ const Register = () => {
                                 <Input size="large" placeholder="Enter your password" className='px-[10px] w-[500px] py-[10px]'></Input>
                             </Form.Item>
                             {error && <Alert description={error} type='error' showIcon closable className="mb-[2.3rem]" />}
-                            {success && <Alert description={success} type='success' showIcon closable className="mb-[2.3rem]" />}                            <Form.Item >
+                            {success && <Alert description={success} type='success' showIcon closable style={{ 
+                                    width: '500px', 
+                                    fontSize: '16px', 
+                                    padding: '20px', 
+                                    marginBottom: '2.3rem', 
+                                }} />}                            
+                            <Form.Item >
                                 <Button type={`${loading ? '' : 'primary'}`} htmlType="Submit" size="large" className='w-full text-white bg-[#0D19A3] rounded-lg p-[15px] font-bold text-[20px] cursor-pointer'>
                                     {loading ? <Spin/> : 'Create Account'}
-                                    Create account
                                 </Button>
                             </Form.Item>
                             <Form.Item >
