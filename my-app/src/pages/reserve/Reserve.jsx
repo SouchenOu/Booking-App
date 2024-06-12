@@ -1,108 +1,99 @@
-import React, { useContext, useState } from 'react'
-import useFetch from '../../hooks/useFetch'
+import React, { useContext, useState } from 'react';
+import useFetch from '../../hooks/useFetch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { SearchContext } from '../../context/SearchContext';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import './Reserve.css'
+import './Reserve.css';
 
-const Reserve = ({setOpen, HotelId}) => {
-
-
-  const {data, loading, error} = useFetch(`http://localhost:8000/hotels/room/${HotelId}`);
+const Reserve = ({ setOpen, HotelId }) => {
+  const { data, loading, error } = useFetch(`http://localhost:8000/hotels/room/${HotelId}`);
   const navigate = useNavigate();
-  const [selectRoom, setSelectRoom] = useState([]);
-  const {dates} = useContext(SearchContext);
-  const handleSelect = (e) =>{
+  const [selectedRooms, setSelectedRooms] = useState([]);
+  const { dates } = useContext(SearchContext);
+
+  const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
-    setSelectRoom(checked ? [...selectRoom, value] : selectRoom.filter((item) => item !== value))
+    setSelectedRooms(checked ? [...selectedRooms, value] : selectedRooms.filter((item) => item !== value));
+  };
 
-  }
-
- 
-
- 
-  const getDateInRange = (startDate, endDate) =>{
+  const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const date = new Date(start.getTime());
-
-    let list = [];
-
-    while(date <= end){
+    const list = [];
+    while (date <= end) {
       list.push(new Date(date).getTime());
       date.setDate(date.getDate() + 1);
     }
+    return list;
+  };
 
-  }
+  const allDates = getDatesInRange(dates[0]?.startDate, dates[0]?.endDate);
 
-  const allDates = getDateInRange(dates[0]?.startDate, dates[0]?.endDate);
-
-  const handleClick = async () =>{
-    try{
-      await Promise.all(selectRoom.map((roomId) =>{
-        const res =  axios.put(`http://localhost:8000/rooms/availability/${roomId}`, {dates : allDates});
-        return (res.data)
-      }))
+  const handleClick = async () => {
+    try {
+      await Promise.all(selectedRooms.map((roomId) => {
+        const res = axios.put(`http://localhost:8000/rooms/availability/${roomId}`, { dates: allDates });
+        return res.data;
+      }));
       setOpen(false);
       navigate("/");
-
-    }catch(err){
-
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-  }
-
-  const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavailableDates.some((date) =>
+  const isAvailable = (room) => {
+    const isFound = room.unavailableDates.some((date) =>
       allDates.includes(new Date(date).getTime())
     );
-
     return !isFound;
   };
 
   return (
-    <div className='flex items-center justify-center h-full w-full  top-[0] left-[0] fixed' style={{ background: 'rgba(0, 0, 0, 0.418)'}}>
-      <div className='bg-white p-[90px] relative'>
-        <FontAwesomeIcon icon={faCircleXmark} size="2x" onClick={()=>setOpen(false)} className='absolute top-0 right-0 cursor-pointert p-[20px]'/>
-        <span className='text-[50px] font-bold text-gray-500'>Reserve your room</span>
+    <div className='flex items-center justify-center h-full w-full top-0 left-0 fixed' style={{ background: 'rgba(0, 0, 0, 0.418)' }}>
+      <div className='bg-white p-[80px] relative flex flex-col justify-center gap-[40px]'>
+        <FontAwesomeIcon icon={faCircleXmark} size="2x" onClick={() => setOpen(false)} className='absolute top-0 right-0 text-gray-400 cursor-pointer p-5' />
+        <span className='text-2xl font-bold text-gray-500'>Reserve your room</span>
         <div className='overflow-y-auto custom-scrollbar' style={{ maxHeight: '60vh' }}>
-            {
-              data.map(item=>(
-                <div className='flex items-center justify-center gap-[50px] p-[20px]'>
-                  <div className='flex flex-col gap-[6px]'>
-                    <div className='text-2xl font-bold' style={{color : '#104774'}}>
-                      {item?.title}
-                    </div>
-                    <div className='text-xl font-bold   ' style={{color : "#B74803"}}>
-                      {item?.desc}
-                    </div>
-                    <div className='text-xl font-bold'>
-                      Max people : <b>{item?.MaxPoeple}</b>
-                    </div>
-                    <div className='text-xl font-bold ' style={{color : '#0a70c4'}}>
-                      {item?.price}$
-                    </div>
-
+          {data.map(room => (
+            <div className='flex items-center  gap-[100px]' key={room._id}>
+              <div className='flex flex-col items-center gap-[100px] p-[20px]'> 
+                <div className='flex flex-col gap-[2px] '>
+                  <div className='text-[20px] font-bold' style={{ color: '#104774' }}>
+                    {room.title}
                   </div>
-                  {item?.roomNumbers.map((elem)=>(
-                    <div className=' w-[400px] flex items-center justify-center gap-[20px]]'>
-                      <label className='text-[24px] font-[400px]'>{elem?.number}</label>
-                      <input  className=" w-[50px] h-[30px] cursor-pointer" type="checkbox" value={elem?._id} onChange={handleSelect}  disabled={!isAvailable(elem)}/>
-                    </div>
-                  ))}
+                  <div className='text-lg font-bold' style={{ color: "#B74803" }}>
+                    {room.desc}
+                  </div>
+                  <div className='text-lg font-bold'>
+                    Max people: <b>{room.MaxPoeple}</b>
+                  </div>
+                  <div className='text-lg font-bold' style={{ color: '#0a70c4' }}>
+                    {room.price}$
+                  </div>
                 </div>
-              ))
-            }
-
+              </div>
+             
+              <div className='w-[20px] h-[20px]'>
+                <input
+                  className="w-[20px] h-[20px]"
+                  type="checkbox"
+                  value={room._id}
+                  onChange={handleSelect}
+                  disabled={!isAvailable(room)}
+                />
+              </div>
+            </div>
+          ))}
         </div>
-        
-        <button onClick={handleClick} className='border-none px-[20px] py-[10px] text-white font-bold rounded-lg cursor-pointer w-full mt-[20px]' style={{background: '#0D19A3'}}>Reserve Now</button>
+        <button onClick={handleClick} className='border-none px-5 py-2 text-white font-bold rounded-lg cursor-pointer w-full mt-5' style={{ background: '#0D19A3' }}>Reserve Now</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Reserve
+export default Reserve;

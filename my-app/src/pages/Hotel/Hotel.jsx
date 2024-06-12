@@ -13,6 +13,7 @@ import Reserve from '../reserve/Reserve'
 import './Hotel.css'
 import NavbarPicture from '../../components/navbar/navBarPicture'
 import HeaderPicture from '../../components/header/headerPicture'
+import { useAuth } from '../../context/AuthenticationContext'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -25,7 +26,7 @@ const Hotel = () => {
   const [open , setOpen] = useState(false);
   const {dates, options} = useContext(SearchContext);
   
-  const {user} = useContext(AuthContext);
+  const {isAuthenticated} = useAuth();
   const MILISECOND_PERdAYS = 1000 *60 * 60 * 24;
   const calculeDayDifference = (date1, date2) => {
     const timeDiff = Math.abs(date2?.getTime() - date1?.getTime());
@@ -36,7 +37,7 @@ const Hotel = () => {
   const days = calculeDayDifference(dates[0]?.endDate, dates[0]?.startDate );
 
   const handleClick = () =>{
-    if(!user){
+    if(!isAuthenticated){
       navigate("/login");
     }else{
       setOpenState(true);
@@ -46,45 +47,7 @@ const Hotel = () => {
 
   
 
-  const pictures = [
-    {
-      src: "https://www.bordeaux-tourisme.com/sites/bordeaux_tourisme/files/styles/large/public/medias/widgets/misc/Burdigala%20H%C3%B4tel%20Inwood%20Bordeaux.jpg.webp?itok=oNrQn0N_"
-    },
-    {
-      src: "https://media-cdn.tripadvisor.com/media/photo-s/0e/49/c7/f1/steigenberger-hotel-bad.jpg"
-    },
-    {
-      src : "https://assets.hrewards.com/assets/jpg.large_111_SHR_Bad_Homburg_public_7806_61ea5c1053.jpg?optimize"
-    },
-    {
-      src: "https://voyageursintrepides.com/wp-content/uploads/2022/08/meilleurs-hotels-luxe-thailande-1-1.jpg"
-    },
-    {
-      src: "https://www.thailandee.com/img/top-hotels-thailand.jpg"
-    },
-    {
-      src : "https://www.marriott.com/content/dam/marriott-renditions/dm-static-renditions/tx/emea/hws/s/seztx/en_us/photo/unlimited/assets/tx-seztx-pool-21834-square.jpg"
-    },
-    {
-      src: "https://www.bordeaux-tourisme.com/sites/bordeaux_tourisme/files/styles/large/public/medias/widgets/misc/Burdigala%20H%C3%B4tel%20Inwood%20Bordeaux.jpg.webp?itok=oNrQn0N_"
-    },
-    {
-      src: "https://media-cdn.tripadvisor.com/media/photo-s/0e/49/c7/f1/steigenberger-hotel-bad.jpg"
-    },
-    {
-      src : "https://assets.hrewards.com/assets/jpg.large_111_SHR_Bad_Homburg_public_7806_61ea5c1053.jpg?optimize"
-    },
-    {
-      src: "https://www.bordeaux-tourisme.com/sites/bordeaux_tourisme/files/styles/large/public/medias/widgets/misc/Burdigala%20H%C3%B4tel%20Inwood%20Bordeaux.jpg.webp?itok=oNrQn0N_"
-    },
-    {
-      src: "https://media-cdn.tripadvisor.com/media/photo-s/0e/49/c7/f1/steigenberger-hotel-bad.jpg"
-    },
-    {
-      src : "https://assets.hrewards.com/assets/jpg.large_111_SHR_Bad_Homburg_public_7806_61ea5c1053.jpg?optimize"
-    }
-  ]
-
+  
   const handleOpen = (i)=>{
 
     setSlideNumber(i);

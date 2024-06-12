@@ -6,7 +6,7 @@ import { DeleteRoom, UpdateRoom, createRoom, getAllRooms, getRoom, updateRoomAva
 
 const router = express.Router();
 
-router.post("/:hotelid",verifyAdmin, createRoom);
+router.post("/:hotelid", createRoom);
 
 router.put('/:id',verifyAdmin, UpdateRoom);
 

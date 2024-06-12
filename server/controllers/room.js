@@ -88,18 +88,18 @@ export const getAllRooms = async (req, res, next) =>{
     }
 }
 
-export const   updateRoomAvailability = async (req, res, next) => {
+export const updateRoomAvailability = async (req, res, next) => {
     try {
-      const test =   await Rooms.updateOne(
-        { "roomNumbers._id": req.params.id },
-        {
-          $push: {
-            "roomNumbers.$.unavailableDates": req.body.dates
-          },
-        }
-      );
-      res.status(200).json(test);
+        const test = await Rooms.updateOne(
+            { _id: req.params.id },
+            {
+                $push: {
+                    unavailableDates: { $each: req.body.dates }
+                }
+            }
+        );
+        res.status(200).json(test);
     } catch (err) {
-      next(err);
+        next(err);
     }
-  };
+};
