@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch'
 const PropertyList = () => {
     const {data, loading, error} = useFetch("http://localhost:8000/hotels/countByType");
   return (
-    <div className='flex w-full  max-w-[1800px] justify-between gap-[10px]'>
+    <div className='flex w-full  max-w-[1800px] justify-between gap-[10px] px-[40px]'>
         { loading ? ('loading...' ) : (
         <>
             <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>

@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='w-full max-w-[1024px] font-normal '>
-        <div className='w-full flex justify-between gap-[200px] mb-[50px]'>
+    <div className='w-full  max-w-[800px] xl:max-w-[1024px] font-normal '>
+        <div className='w-full flex xl:justify-between xl:gap-[200px] gap-[100px] mb-[50px]'>
             <ul className=''>
                 <li className='' style={{color: '#003580'}}>Countries</li>
                 <li className='' style={{color: '#003580'}}>Regions</li>
@@ -44,7 +44,7 @@ const Footer = () => {
 
             </ul>
       
-            <ul className=''>
+            <ul className='sm:hidden'>
                 <li className='' style={{color: '#003580'}}>Countries</li>
                 <li className='' style={{color: '#003580'}}>Regions</li>
                 <li className='' style={{color: '#003580'}}>Cities</li>

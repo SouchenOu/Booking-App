@@ -145,7 +145,7 @@ const Home = () => {
       )}
       <div className='mt-[50px] flex-col flex items-center gap-[30px] z-30'>
         <Features />
-        <h1 className='text-[40px] font-bold items-center'>Browse by property type</h1>
+        <h1 className=' px-[40px] text-[40px] font-bold items-center'>Browse by property type</h1>
         <PropertyList />
         <Explore />
         <ListCheck />

@@ -55,7 +55,7 @@ const Header = ({ type }) => {
 
   return (
     <div className="text-white flex justify-center h-[800px] xl:h-[500px] relative gap-[20px] " style={{ background: '#0D19A3' }}>
-      <div className="w-full 2xl:px-[400px] 2xl:mt-[20px] 2xl:ml-[0px] 2xl:mb-[100px] 2xl:mr-[0px] flex flex-col gap-[50px]">
+      <div className="w-full 2xl:px-[300px] 2xl:mt-[20px] 2xl:ml-[0px] 2xl:mb-[100px] 2xl:mr-[0px] flex flex-col gap-[50px]">
         <div className="flex px-[10px] gap-[10px] xl:gap-[40px]  items-center">
           <div className={`cursor-pointer flex gap-[10px] items-center ${active === 'stays' ? 'border border-blue-500' : 'border-gray-300'} outline-none p-[14px] rounded-lg`} onClick={() => handleClick('stays')}>
             <FontAwesomeIcon icon={faBed} className="text-[20px]" />
@@ -106,7 +106,7 @@ const Header = ({ type }) => {
                 SignIn / Register
               </button>
             )}
-            <div className="2xl:h-[80px] xl:h-[80px] h-[400px] flex flex-col 2xl:flex-row xl:flex-row items-center justify-between border-solid border-[7px] border-[#E4C580]  rounded-lg absolute bottom-[-60px] w-[800px] lg:w-[1100px]  xl:w-[1300px]  2xl:w-[1400px] " style={{ background: '#fff' }}>
+            <div className="2xl:h-[80px] xl:h-[80px] h-[400px] flex flex-col xl:flex-row items-center justify-between border-solid border-[7px] border-[#E4C580]  rounded-lg absolute bottom-[-60px] w-[700px] lg:w-[700px]  xl:w-[1300px]  2xl:w-[1500px] " style={{ background: '#fff' }}>
              <div className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
                 <FontAwesomeIcon icon={faBed} className="text-[30px]" style={{ color: 'gray' }} />
                 <input onChange={(e) => setDestination(e.target.value)} type="text" placeholder="Where are you going?" className="border-none outline-none text-[20px] font-bold" style={{ color: 'gray' }} />

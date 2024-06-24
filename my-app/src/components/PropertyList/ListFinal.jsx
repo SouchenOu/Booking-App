@@ -14,15 +14,15 @@ const ListFinal = () => {
 
   }
   return (
-    <div className='flex flex-col w-full max-w-[1800px] gap-[30px]'>
+    <div className='flex flex-col w-full xl:max-w-[1800px] max-w-[800px] gap-[30px]'>
       <h1 className='text-[40px] font-bold'>Destination we love</h1>
       <div className='flex gap-[40px]'>
           <span className={`text-[30px] cursor-pointer ${active === 'Regions' ? 'border border-blue-500  bg-gray-200' : ' border-gray-300'}  outline-none p-[5px] rounded-lg `} onClick={()=>handleClick("Regions")}>Regions</span>
           <span className={`text-[30px] cursor-pointer ${active === 'Cities' ? 'border border-blue-500  bg-gray-200' : ' border-gray-300'}  outline-none p-[5px] rounded-lg `} onClick={()=>handleClick("Cities")}>Cities</span>
           <span className={`text-[30px] cursor-pointer ${active === 'interest' ? 'border border-blue-500  bg-gray-200' : ' border-gray-300'}  outline-none p-[5px] rounded-lg `} onClick={()=>handleClick("interest")}>Places of interest</span>
       </div>
-      { active === 'Cities' && <div className='flex gap-[50px] w-full'>
-        <div className='flex flex-col gap-[10px]'>
+      { active === 'Cities' && <div className='flex flex-col xl:flex-row  gap-[50px] w-full'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
             <div className='flex flex-col gap-[10px]'>
               <h1 className='text-[20px] font-bold'>Amsterdam, Netherlands</h1>
               <p className='text-[20px] text-gray-500 w-[400px]'>549 holiday rentals, 18 cottages, 11 beach rentals, 5 cabins, 4 glamping sites</p>
@@ -36,7 +36,7 @@ const ListFinal = () => {
               <p className='text-[20px] text-gray-500 w-[400px]'>63 holiday rentals, 5 cottages</p>
             </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Bordeaux, France</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>629 holiday rentals, 54 cottages</p>
@@ -50,7 +50,7 @@ const ListFinal = () => {
             <p className='text-[20px] text-gray-500 w-[400px]' >440 holiday rentals, 16 cottages</p>
           </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Bangkok</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>4041 hotels</p>
@@ -64,7 +64,7 @@ const ListFinal = () => {
             <p className='text-[20px] text-gray-500 w-[400px]' >389 hotels</p>
           </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>London</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>14532 hotels</p>
@@ -80,8 +80,8 @@ const ListFinal = () => {
         </div>
 
       </div>}
-      { active === 'Regions' && <div className='flex gap-[50px] w-full'>
-      <div className='flex flex-col gap-[10px]'>
+      { active === 'Regions' && <div className='flex gap-[50px] w-full flex flex-col xl:flex-row'>
+      <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
             <div className='flex flex-col gap-[10px]'>
               <h1 className='text-[20px] font-bold'>Amsterdam, Netherlands</h1>
               <p className='text-[20px] text-gray-500 w-[400px]'>549 holiday rentals, 18 cottages, 11 beach rentals, 5 cabins, 4 glamping sites</p>
@@ -95,7 +95,7 @@ const ListFinal = () => {
               <p className='text-[20px] text-gray-500 w-[400px]'>63 holiday rentals, 5 cottages</p>
             </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Bordeaux, France</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>629 holiday rentals, 54 cottages</p>
@@ -109,7 +109,7 @@ const ListFinal = () => {
             <p className='text-[20px] text-gray-500 w-[400px]' >440 holiday rentals, 16 cottages</p>
           </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Bangkok</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>4041 hotels</p>
@@ -123,7 +123,7 @@ const ListFinal = () => {
             <p className='text-[20px] text-gray-500 w-[400px]' >389 hotels</p>
           </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>London</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>14532 hotels</p>
@@ -139,8 +139,8 @@ const ListFinal = () => {
         </div>
 
       </div>}
-      { active === 'interest' && <div className='flex gap-[50px] w-full'>
-        <div className='flex flex-col gap-[10px]'>
+      { active === 'interest' && <div className='flex gap-[50px] w-full flex flex-col xl:flex-row'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
             <div className='flex flex-col gap-[10px]'>
               <h1 className='text-[20px] font-bold'>Mykonos</h1>
               <p className='text-[20px] text-gray-500 w-[400px]'>1,455 properties</p>
@@ -154,7 +154,7 @@ const ListFinal = () => {
               <p className='text-[20px] text-gray-500 w-[400px]'>114 properties</p>
             </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Lake District</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>2,406 properties</p>
@@ -168,7 +168,7 @@ const ListFinal = () => {
             <p className='text-[20px] text-gray-500 w-[400px]' >9,610 properties</p>
           </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Phuket Province</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>5,501 properties</p>
@@ -182,7 +182,7 @@ const ListFinal = () => {
             <p className='text-[20px] text-gray-500 w-[400px]' >410 properties</p>
           </div>
         </div>
-        <div className='flex flex-col gap-[10px]'>
+        <div className='flex flex-col gap-[10px] border-b-[2px] border-b-black'>
           <div className='flex flex-col gap-[10px]'>
             <h1 className='text-[20px] font-bold'>Bali</h1>
             <p className='text-[20px] text-gray-500 w-[400px]'>120444 hotels</p>

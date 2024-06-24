@@ -39,7 +39,7 @@ const Last = () => {
     //   </div>
       
     // </div>
-    <section className=' px-[20px]  2xl:mx-auto 2xl:max-w-[1440px] flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20 relative'>
+    <section className=' px-[20px]   max-w-[800px] 2xl:mx-auto 2xl:max-w-[1440px] flex flex-col py-10 lg:mb-10 lg:py-20 xl:mb-20 relative'>
     <div className='hide-scrollbar flex h-full w-full items-start justify-start gap-8 overflow-x-auto lg:h-[600px] xl:h-[640px]'>
         <Site backgroundImage='/v.jpg' title="Villa 5 stars" subtitle="Somewhere in Casablanca" peopleJoined="50+ People"/>
         <Site backgroundImage='/hh2.jpg' title="Hotel 4 stars" subtitle="Somewhere in Rabat" peopleJoined="500+ People"/>
