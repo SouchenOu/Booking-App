@@ -54,8 +54,8 @@ const Header = ({ type }) => {
   };
 
   return (
-    <div className="text-white flex justify-center h-[800px] xl:h-[400px] relative" style={{ background: '#0D19A3' }}>
-      <div className="w-full 2xl:px-[500px] 2xl:mt-[20px] 2xl:ml-[0px] 2xl:mb-[100px] 2xl:mr-[0px]">
+    <div className="text-white flex justify-center h-[800px] xl:h-[500px] relative gap-[20px] " style={{ background: '#0D19A3' }}>
+      <div className="w-full 2xl:px-[400px] 2xl:mt-[20px] 2xl:ml-[0px] 2xl:mb-[100px] 2xl:mr-[0px] flex flex-col gap-[50px]">
         <div className="flex px-[10px] gap-[10px] xl:gap-[40px]  items-center">
           <div className={`cursor-pointer flex gap-[10px] items-center ${active === 'stays' ? 'border border-blue-500' : 'border-gray-300'} outline-none p-[14px] rounded-lg`} onClick={() => handleClick('stays')}>
             <FontAwesomeIcon icon={faBed} className="text-[20px]" />
@@ -96,21 +96,22 @@ const Header = ({ type }) => {
             </div>
           </div>
         </div>
+        <div className='p-[30px]'>
         {type !== 'list' && (
           <>
-            <h1 className="text-white text-[60px] font-bold w-full">Find your next stay</h1>
-            <p className="mt-[20px] mb-[20px] text-[40px]">Search low prices on hotels, homes and much more....</p>
+            <h1 className="text-white text-[60px] font-bold w-full px-[30px]">Find your next stay</h1>
+            <p className=" text-[40px] px-[30px]">Search low prices on hotels, homes and much more....</p>
             {!user && (
-              <button className="p-[10px] border-[3px] text-white rounded cursor-pointer" style={{ background: '#B74803' }}>
+              <button className="p-[20px] ml-[50px]  border-[3px] text-white rounded text-[20px] font-bold cursor-pointer bg-yellow-500 " >
                 SignIn / Register
               </button>
             )}
-            <div className="xl:h-[80px] h-[400px] flex flex-col xl:flex-row items-center justify-between border-solid border-[7px] border-[#E4C580] p-6 rounded-lg absolute bottom-[-60px] w-full max-w-[1500px]" style={{ background: '#fff' }}>
-             <div className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-[500px]">
+            <div className="2xl:h-[80px] xl:h-[80px] h-[400px] flex flex-col 2xl:flex-row xl:flex-row items-center justify-between border-solid border-[7px] border-[#E4C580]  rounded-lg absolute bottom-[-60px] w-[800px] lg:w-[1100px]  xl:w-[1300px]  2xl:w-[1400px] " style={{ background: '#fff' }}>
+             <div className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
                 <FontAwesomeIcon icon={faBed} className="text-[30px]" style={{ color: 'gray' }} />
                 <input onChange={(e) => setDestination(e.target.value)} type="text" placeholder="Where are you going?" className="border-none outline-none text-[20px] font-bold" style={{ color: 'gray' }} />
               </div>
-              <div className=" cursor-pointer gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-[500px]">
+              <div className=" cursor-pointer gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
                 <FontAwesomeIcon icon={faCalendarDay} className="text-[30px]" style={{ color: 'gray' }} />
                 <span className="text-[20px] font-bold" onClick={() => setOpenDate(!openDate)} style={{ color: 'gray' }}>
                   {`${format(dates[0].startDate, 'MM/dd/yyyy')} to ${format(dates[0].endDate, 'MM/dd/yyyy')}`}
@@ -126,7 +127,7 @@ const Header = ({ type }) => {
                   />
                 )}
               </div>
-              <div onClick={() => setOpenOptions(!openOptions)} className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-[500px]">
+              <div onClick={() => setOpenOptions(!openOptions)} className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
                 <FontAwesomeIcon icon={faPerson} className="text-[20px]" style={{ color: 'gray' }} />
                 <span className="text-[20px] font-bold" style={{ color: 'gray' }}>
                   {options.adult} . {options.children} . {options.room}
@@ -207,6 +208,9 @@ const Header = ({ type }) => {
             </div>
           </>
         )}
+
+        </div>
+        
       </div>
     </div>
   );
