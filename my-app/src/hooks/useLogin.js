@@ -29,9 +29,9 @@ const useLogin = () =>{
                 return { success: false, message: data.message }; // Return error message
 
             }else{
-                const errorMsg = "Registration failed";
-                setError("Registration failed")
-                message.error("Registration failed");
+                const errorMsg = "SignIn failed";
+                setError("SignIn failed")
+                message.error("SignIn failed");
                 return { success: false, message: errorMsg };
 
             }

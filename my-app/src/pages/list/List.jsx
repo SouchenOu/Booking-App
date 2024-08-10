@@ -32,9 +32,9 @@ const List = () => {
       <Header type="list" />
       <div className='flex flex-col items-center mt-[20px]'>
         <div className='w-full max-w-[2000px] flex gap-[50px]'>
-          <div className='flex-[1] p-[50px] rounded-lg sticky' style={{ background: '#CC6D3D', maxHeight: '80vh', overflowY: 'auto' }}>
-            <h1 className='text-2xl mb-[10px] font-bold' style={{ color: '#A3B4C8' }}>Search</h1>
-            <div className=' flex justify-between'>
+          <div className='flex-[1]  p-[50px] rounded-lg sticky' style={{ background: '#FFE4B5', maxHeight: '80vh', overflowY: 'auto' }}>
+            <h1 className='text-2xl mb-[10px] font-bold' style={{ color: '#CC6D3D' }}>Search</h1>
+            <div className=' flex justify-between '>
               <label className='text-xl font-bold'>Destination</label>
               <input className='p-[20px] rounded-lg border-solid border-[3px]  border-gray-300 h-[30px] ' type='text' placeholder={destination} />
             </div>
@@ -43,26 +43,26 @@ const List = () => {
               <span onClick={() => setOpenDate(!openDate)} style={{ background: '#fff' }} className=' p-[20px] justify-center cursor-pointer border-none border-[3px] border-red-300'>{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
               {openDate && <DateRange onChange={(item) => setDates([item.selection])} minDate={new Date()} ranges={dates} />}
             </div>
-            <div className='flex flex-col gap-[10px]'>
-              <label className=''>Options</label>
-              <div>
-                <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
+            <div className='flex flex-col gap-[10px] py-[30px]'>
+              <label className='text-[20px] font-bold'>Options</label>
+              <div className='px-[20px]'>
+                <div className='flex justify-between mb-[10px]' style={{ color: '#CC6D3D' }}>
                   <span className='text-xl font-bold'>Min price <small>per night</small></span>
                   <input type='number' className='w-[60px] p-[4px]' onChange={e=>setMin(e.target.value)} />
                 </div>
-                <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
+                <div className='flex justify-between mb-[10px]' style={{ color: '#CC6D3D' }}>
                   <span className='text-xl font-bold'>Max price <small>per night</small></span>
                   <input type='number' onChange={e=>setMax(e.target.value)} className='w-[60px] p-[4px]' />
                 </div>
-                <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
+                <div className='flex justify-between mb-[10px]' style={{ color: '#CC6D3D' }}>
                   <span className='text-xl font-bold'>Adult</span>
                   <input type='number' min={1} placeholder={options.adult} className='w-[60px] p-[4px]' />
                 </div>
-                <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
+                <div className='flex justify-between mb-[10px]' style={{ color: '#CC6D3D' }}>
                   <span className='text-xl font-bold'>Children</span>
                   <input type='number' min={0} placeholder={options.children} className='w-[60px] p-[4px]' />
                 </div>
-                <div className='flex justify-between mb-[10px]' style={{ color: '#A3B4C8' }}>
+                <div className='flex justify-between mb-[10px]' style={{ color: '#CC6D3D' }}>
                   <span className='text-xl font-bold'>Room</span>
                   <input type='number' min={1} placeholder={options.room} className='w-[60px] p-[4px]' />
                 </div>

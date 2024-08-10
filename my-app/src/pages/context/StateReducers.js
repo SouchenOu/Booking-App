@@ -6,10 +6,7 @@ export const initialeState = {
     conversations : [],
     currentChatUser: undefined,
     contactsPage : false,
-
-
 }
-
 
 const reducer = (state, action) =>{
     switch(action.type){

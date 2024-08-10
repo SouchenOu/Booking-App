@@ -34,20 +34,8 @@ const Register = () => {
         } else {
             setSuccess(null);
         }
-        // e.preventDefault();
-        // dispatch({ type: "LOGIN_START" });
-        // try {
-        //     console.log("Trying to register");
-        //     const response = await axios.post("http://localhost:8000/auth/register", infoUser);
-        //     console.log("Data registered-->", response.data);
-        //     ToastSuccess("Registration successful!");
-        //     alert("Registration successful!");
-        //     navigate("/login");
-        // } catch (err) {
-        //     console.error(err);
-        //     ToastError("Registration failed. Please try again.");
-        //     alert("Registration failed. Please try again.");
-        // }
+       
+      
     };
 
     return (

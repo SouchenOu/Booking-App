@@ -17,8 +17,7 @@ const useSignUp = () =>{
             const res = await fetch('http://localhost:8000/auth/register' , {method : 'POST', headers: {'Content-Type' : 'application/json'}, body : JSON.stringify(values)});
             console.log("response here-->", res);
             const data = await res.json();
-            console.log("hna data", data);
-            console.log("data signUp-->", res.status);
+           
             if(res.status === 200){
                 console.log("200 here");
                 message.success(data.message);

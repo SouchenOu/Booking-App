@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={ isAuthenticated ? <Home/> : <Login/>}></Route>
         <Route path="/hotels" element={isAuthenticated ? <List/> : <Login/>}></Route>
         <Route path="/hotels/:id" element={isAuthenticated  ? <Hotel/> : <Login/>}></Route>
-        <Route path="/login" element={ !isAuthenticated ? <Login/> : <Home/>}></Route>
+        <Route path="/login" element={ <Login/>}></Route>
         <Route path="/register" element={ !isAuthenticated ? <Register/> : <Home/>}></Route>
         <Route path="/contact" element={isAuthenticated ? <Contact/> : <Login/>}></Route>
 
