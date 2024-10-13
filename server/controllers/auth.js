@@ -2,40 +2,121 @@ import Users from "../Modules/Users.js"
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken"
 import CreateError from "../utils/error.js"
+import nodemailer from 'nodemailer'; 
+
 
 
 // const CreateError = require('../utils/error');
 
-export const register = async (req, res, next) =>{
+// export const register = async (req, res, next) =>{
   
-console.log("register backend");
-  try{
-    const user = await Users.findOne({email : req.body.email});
-    console.log("user register-->", user);
+//   try{
+//     const user = await Users.findOne({email : req.body.email});
+//     if(user){
+//       return next(new CreateError('User Alrighdy exist', 400));
+//     }
+
+//     const hashedPassword = await bcrypt.hash(req.body.password, 12);
+
+
+//     const newUser = new Users({
+//           ...req.body,
+//           password: hashedPassword ,
+//       });
+//       console.log("newUser backend-->", newUser);
+//       const token = jwt.sign({_id : newUser._id}, 'secretkey123' , {expiresIn : '90d'})
+//       await newUser.save();
+//       res.status(200).json({status : 'success', message: 'User registered succefully ', token});
+
+
+//   }catch(err){
+//         console.log(err);
+
+
+//   }
+
+// }
+
+
+
+
+/****** */
+let verificationCodeStore = {}; 
+
+
+  export const register = async (req, res, next) => {
+    try {
+        const { email, password, verificationCode } = req.body;
+
+        const user = await Users.findOne({ email });
+
+        if (user) {
+            return res.status(400).json({ status: 'failure', message: 'User already exists' });
+        }
+
+        if (verificationCodeStore[email] !== parseInt(verificationCode)) {
+            return res.status(400).json({ status: 'failure', message: 'Invalid verification code' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const newUser = new Users({
+            ...req.body,
+            password: hashedPassword,
+        });
+
+        // Generate a token
+        const token = jwt.sign({ _id: newUser._id }, 'secretkey123', { expiresIn: '90d' });
+        await newUser.save();
+        
+        delete verificationCodeStore[email];
+
+        return res.status(200).json({ status: 'success', message: 'User registered successfully', token });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ status: 'error', message: 'Internal server error' });
+    }
+};
+
+export const sendVerificationCode = async (req, res) => {
+  try {
+    const { newEmail } = req.body;
+    const user = await Users.findOne({ email: newEmail });
     if(user){
-      return next(new CreateError('User Alrighdy exist', 400));
+      return res.status(400).json({ status: 'failure', message: 'Email alrighdy exist' });
+
     }
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    const verificationCode = Math.floor(100000 + Math.random() * 900000);
 
+    verificationCodeStore[newEmail] = verificationCode;
 
-    const newUser = new Users({
-          ...req.body,
-          password: hashedPassword ,
-      });
-      console.log("newUser backend-->", newUser);
-      const token = jwt.sign({_id : newUser._id}, 'secretkey123' , {expiresIn : '90d'})
-      await newUser.save();
-      res.status(200).json({status : 'success', message: 'User registered succefully ', token});
+    const transporter = nodemailer.createTransport({
+      service : "gmail",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "soukainaouchenuai@gmail.com",
+        pass: "ktteypikemdcbkqq",
+        
+      }
+    });
 
+    await transporter.sendMail({
+      from: 'soukainaouchenuai@gmail.com',
+      to: newEmail,
+      subject: 'Your Verification Code',
+      text: `Your verification code is: ${verificationCode}`,
+    });
 
-  }catch(err){
-        console.log(err);
-
-
+    res.status(200).json({ status: 'success', message: 'Verification code sent' });
+  } catch (error) {
+    console.error("Error sending verification code:", error);
+    res.status(500).json({ status: 'error', message: 'Failed to send verification code' });
   }
+};
 
-}
+
 
 // export const login = async (req, res, next) => {
 //     // console.log("enter to login");

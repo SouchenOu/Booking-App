@@ -101,11 +101,7 @@ const Header = ({ type }) => {
           <>
             <h1 className="text-white text-[60px] font-bold w-full px-[30px]">Find your next stay</h1>
             <p className=" text-[40px] px-[30px]">Search low prices on hotels, homes and much more....</p>
-            {!user && (
-              <button className="p-[20px] ml-[50px]  border-[3px] text-white rounded text-[20px] font-bold cursor-pointer bg-yellow-500 " >
-                SignIn / Register
-              </button>
-            )}
+         
             <div className="2xl:h-[80px] xl:h-[80px] h-[400px] flex flex-col xl:flex-row items-center justify-between border-solid border-[7px] border-[#E4C580]  rounded-lg absolute bottom-[-60px] w-[700px] lg:w-[700px]  xl:w-[1300px]  2xl:w-[1500px] " style={{ background: '#fff' }}>
              <div className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
                 <FontAwesomeIcon icon={faBed} className="text-[30px]" style={{ color: 'gray' }} />
