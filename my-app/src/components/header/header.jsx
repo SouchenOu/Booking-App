@@ -1,4 +1,4 @@
-import { faBars, faBed, faCalendarDay, faCar, faPerson, faPlane, faTaxi } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBed, faCalendarDay, faCar, faPerson, faPlane, faSearch, faTaxi } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react';
 import { DateRange } from 'react-date-range';
@@ -12,8 +12,10 @@ import { AuthContext } from '../../context/AuthContext';
 const Header = ({ type }) => {
   const [destination, setDestination] = useState('');
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const [active, setActive] = useState(null);
+
+  const [active, setActive] = useState("stays");
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
@@ -35,6 +37,7 @@ const Header = ({ type }) => {
 
   const handleClick = (value) => {
     setActive(value);
+    navigate("/cars");
   };
 
   const optionCounter = (element, action) => {
@@ -45,8 +48,6 @@ const Header = ({ type }) => {
       };
     });
   };
-
-  const navigate = useNavigate();
 
   const handleSearch = () => {
     dispatch({ type: 'NEW_SEARCH', payload: { destination, dates, options } });
@@ -97,7 +98,7 @@ const Header = ({ type }) => {
           </div>
         </div>
         <div className='p-[30px]'>
-        {type !== 'list' && (
+        {type === 'home' && (
           <>
             <h1 className="text-white text-[60px] font-bold w-full px-[30px]">Find your next stay</h1>
             <p className=" text-[40px] px-[30px]">Search low prices on hotels, homes and much more....</p>
@@ -196,6 +197,41 @@ const Header = ({ type }) => {
                   </div>
                 )}
               </div>
+              <div className="flex items-center justify-center">
+                <button className="p-[20px] rounded cursor-pointer text-[20px] font-bold w-[200px] border-[5px] border-solid border-yellow-400" style={{ background: '#0D19A3' }} onClick={handleSearch}>
+                  Search
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+        {type === 'cars' && (
+          <>
+            <h1 className="text-white text-[60px] font-bold w-full px-[30px]">Car hire for any kind of trip</h1>
+            <p className=" text-[40px] px-[30px]">Great cars at great prices, from the biggest car rental companies</p>
+         
+            <div className="2xl:h-[80px] xl:h-[80px] h-[400px] flex flex-col xl:flex-row items-center justify-between border-solid border-[7px] border-[#E4C580]  rounded-lg absolute bottom-[-60px] w-[700px] lg:w-[700px]  xl:w-[1300px]  2xl:w-[1500px] " style={{ background: '#fff' }}>
+             <div className="gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
+                <FontAwesomeIcon icon={faSearch} className="text-[30px]" style={{ color: 'gray' }} />
+                <input onChange={(e) => setDestination(e.target.value)} type="text" placeholder="pick up location ?" className="border-none outline-none text-[20px] font-medium" style={{ color: 'gray' }} />
+              </div>
+              <div className=" cursor-pointer gap-[10px] flex items-start border-[5px] border-solid border-yellow-400 p-4 w-full">
+                <FontAwesomeIcon icon={faCalendarDay} className="text-[30px]" style={{ color: 'gray' }} />
+                <span className="text-[20px] font-medium" onClick={() => setOpenDate(!openDate)} style={{ color: 'gray' }}>
+                  {`${format(dates[0].startDate, 'MM/dd/yyyy')}    to    ${format(dates[0].endDate, 'MM/dd/yyyy')}`}
+                </span>
+                {openDate && (
+                  <DateRange
+                    className="z-[2] top-[50px] absolute cursor-pointer"
+                    editableDateInputs={true}
+                    onChange={(item) => setDates([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dates}
+                    minDate={new Date()}
+                  />
+                )}
+              </div>
+             
               <div className="flex items-center justify-center">
                 <button className="p-[20px] rounded cursor-pointer text-[20px] font-bold w-[200px] border-[5px] border-solid border-yellow-400" style={{ background: '#0D19A3' }} onClick={handleSearch}>
                   Search

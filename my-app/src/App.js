@@ -7,6 +7,7 @@ import Register from "./pages/Register/Register";
 import Contact from "./pages/Contact/Contact";
 import Message from "./pages/Message/Message";
 import { useAuth } from "./context/AuthenticationContext";
+import Cars from "./pages/Cars/Cars";
 function App() {
 
   const {isAuthenticated} = useAuth();
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={ <Login/>}></Route>
         <Route path="/register" element={ !isAuthenticated ? <Register/> : <Home/>}></Route>
         <Route path="/contact" element={isAuthenticated ? <Contact/> : <Login/>}></Route>
+        <Route path="/Cars" element={isAuthenticated ? <Cars/> : <Login/>}></Route>
 
       </Routes>
     </BrowserRouter>

@@ -15,7 +15,7 @@ const PropertyList = () => {
                 </div>
             </div>
             <div className='rounded-lg cursor-pointer overflow-hidden w-[300px]'>
-                <img className='w-[1800px] h-[200px] object-cover' src="https://www.travaux.com/images/cms/original/ebcd4d3c-6a00-47d2-8165-6d9e192082af.jpeg" alt="Appartements"/>
+                <img className='w-[1800px] h-[200px] object-cover' src="https://www.apartments.com/blog/sites/default/files/styles/x_large_hq/public/image/2023-06/ParkLine-apartment-in-Miami-FL.jpg?itok=kQmw64UU" alt="Appartements"/>
                 <div className='cursor-pointer'>
                     <h1 className='text-2xl'>Appartements</h1>
                     <h2 className='text-lg'>{data[1]?.count} Appartements</h2>

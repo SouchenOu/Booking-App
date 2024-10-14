@@ -24,7 +24,7 @@ const ListCheck = () => {
   }
   return (
     <div className='flex flex-col w-full xl:max-w-[1800px] justify-between gap-[20px] z-[1]'>
-      <h1 className=' px-[40px] text-[40px] font-bold'>Quick and easy trip planner</h1>
+      <h1 className=' text-[40px] font-bold'>Quick and easy trip planner</h1>
       <p className='px-[40px] text-[20px]'>Pick a vibe and explore the top destinations in Morocco</p>
       <div className='flex gap-[40px] mb-[50px]'>
                 <div className={`cursor-pointer flex gap-[10px] items-center  ${active === "Beatch" ? 'border border-blue-500 rounded-full bg-gray-200' : ' border-gray-300'}  outline-none p-[14px] rounded-lg `} onClick={() =>handleFunction("Beatch")} >
