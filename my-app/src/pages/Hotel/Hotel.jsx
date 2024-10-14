@@ -22,7 +22,7 @@ const Hotel = () => {
   const navigate = useNavigate();
   const id = location.pathname.split("/");
   const idFinal = id[2];
-  const {data, loading, error} = useFetch(`http://localhost:8000/hotels/find/${idFinal}`);
+  const {data, loading, error} = useFetch(`https://booking-app-udqo.onrender.com/hotels/find/${idFinal}`);
   const [open , setOpen] = useState(false);
   const {dates, options} = useContext(SearchContext);
   

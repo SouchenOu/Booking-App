@@ -13,7 +13,7 @@ const useLogin = () =>{
             setError(null);
             setLoading(true);
 
-            const res = await fetch('http://localhost:8000/auth/login' , {method : 'POST', headers: {'Content-Type' : 'application/json'}, body : JSON.stringify(values)});
+            const res = await fetch('https://booking-app-udqo.onrender.com/auth/login' , {method : 'POST', headers: {'Content-Type' : 'application/json'}, body : JSON.stringify(values)});
             console.log("response here-->", res);
             const data = await res.json();
             console.log("hna data", data);

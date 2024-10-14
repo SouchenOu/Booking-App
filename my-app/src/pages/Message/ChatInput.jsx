@@ -60,8 +60,8 @@ const ChatInput = () => {
   const sendMessage = async () => {
     try {
         // Send the new message
-        const { data } = await axios.post("http://localhost:8000/message/create", {  content: message, fromId: userInfo._id , toId: currentChatUser._id});
-        const {data :{messages} } = await axios.get(`http://localhost:8000/message/getMessage/${userInfo._id}/${currentChatUser._id}`);
+        const { data } = await axios.post("https://booking-app-udqo.onrender.com/message/create", {  content: message, fromId: userInfo._id , toId: currentChatUser._id});
+        const {data :{messages} } = await axios.get(`https://booking-app-udqo.onrender.com/message/getMessage/${userInfo._id}/${currentChatUser._id}`);
         dispatch({type:reducerCases.SET_MESSAGES, messages});
    
         setMessage("");

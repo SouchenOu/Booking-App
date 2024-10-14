@@ -58,8 +58,8 @@ const Home = () => {
   const sendMessage = async () => {
     try {
       // Send the new message
-      const { data } = await axios.post("http://localhost:8000/message/create", { content: message, fromId: userInfo._id, toId: "6654313144f0845f7146d9a6" });
-      const { data: { messages } } = await axios.get(`http://localhost:8000/message/getMessage/${userInfo._id}/6654313144f0845f7146d9a6`);
+      const { data } = await axios.post("https://booking-app-udqo.onrender.com/message/create", { content: message, fromId: userInfo._id, toId: "6654313144f0845f7146d9a6" });
+      const { data: { messages } } = await axios.get(`https://booking-app-udqo.onrender.com/message/getMessage/${userInfo._id}/6654313144f0845f7146d9a6`);
       dispatch({ type: reducerCases.SET_MESSAGES, messages });
       setMessage("");
     } catch (err) {
@@ -79,7 +79,7 @@ const Home = () => {
 
   useEffect(()=>{
     const getMessages = async () =>{
-      const {data :{messages} } = await axios.get(`http://localhost:8000/message/getMessage/${userInfo._id}/6654313144f0845f7146d9a6`);
+      const {data :{messages} } = await axios.get(`https://booking-app-udqo.onrender.com/message/getMessage/${userInfo._id}/6654313144f0845f7146d9a6`);
       dispatch({type: reducerCases.SET_MESSAGES, messages});
     }
     if(userInfo?._id)

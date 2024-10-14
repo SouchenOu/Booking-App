@@ -2,7 +2,7 @@ import React from 'react'
 import useFetch from '../../hooks/useFetch'
 
 const FeaturesProperties = () => {
-    const {data, loading, error} = useFetch("http://localhost:8000/hotels/features?featured=true");
+    const {data, loading, error} = useFetch("https://booking-app-udqo.onrender.com/hotels/features?featured=true");
   return (
     <div className='flex w-full max-w-[1800px] gap-[20px] justify-between '>
         <div className='gap-[10px] flex flex-col shadow-custom  p-[40px]'>

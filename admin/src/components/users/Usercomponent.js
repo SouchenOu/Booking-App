@@ -30,7 +30,7 @@ const UserComponent = () => {
 		});
 	  };
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch('http://localhost:8000/users');
+  const { data, loading, error } = useFetch('https://booking-app-udqo.onrender.com/users');
 
   useEffect(() => {
     if (data) {
@@ -41,7 +41,7 @@ const UserComponent = () => {
   const handleDelete = async (id) => {
 
     try{
-        await axios.delete('http://localhost:8000/users');
+        await axios.delete('https://booking-app-udqo.onrender.com/users');
         ToastSuccess(`Delete succefully !`);
 
     }catch(err){

@@ -11,7 +11,7 @@ const InfoUser = () => {
     useEffect(()=>{
         const getUser = async () =>{
             try{
-                const info = await axios.get(`http://localhost:8000/users/${userId}`);
+                const info = await axios.get(`https://booking-app-udqo.onrender.com/users/${userId}`);
                 setUser(info.data);
             }catch(err){
                 console.log(err);
