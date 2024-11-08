@@ -12,7 +12,7 @@ const SideBar = () => {
     useEffect(()=>{
         const getConversation = async () =>{
             try{
-                const {data} = await axios.get(`https://booking-app-udqo.onrender.com/message/getConversation/${userInfo._id}`);
+                const {data} = await axios.get(`http://localhost:8000/message/getConversation/${userInfo._id}`);
                 dispatch({type : reducerCases.SET_CONVERSATIONS, conversations: data.response.users});
 
 

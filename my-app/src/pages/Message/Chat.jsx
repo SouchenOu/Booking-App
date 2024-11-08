@@ -7,7 +7,7 @@ const Chat = () => {
 
     // useEffect=(()=>{
     //     const getMessages = () =>{
-    //         const messages = axios.get(`https://booking-app-udqo.onrender.com/`)
+    //         const messages = axios.get(`http://localhost:8000/`)
     //     }
 
     // },[])

@@ -8,7 +8,6 @@ const UserSchema = new mongoose.Schema({
     username : {
         type : String,
         required : true,
-        unique : true,
     },
     email : {
         type : String,
@@ -25,7 +24,6 @@ const UserSchema = new mongoose.Schema({
     },
     phone : {
         type: String,  // Changed field name to lowercase
-        unique: true,  
     },
     password :{
         type : String,

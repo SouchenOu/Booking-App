@@ -46,6 +46,7 @@ let verificationCodeStore = {};
 
   export const register = async (req, res, next) => {
     try {
+      console.log("enter here");
         const { email, password, verificationCode } = req.body;
 
         const user = await Users.findOne({ email });

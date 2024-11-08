@@ -10,7 +10,7 @@ const ChatContainer = () => {
 
   useEffect(()=>{
     const getMessages = async () =>{
-      const {data :{messages} } = await axios.get(`https://booking-app-udqo.onrender.com/message/getMessage/${userInfo._id}/${currentChatUser._id}`);
+      const {data :{messages} } = await axios.get(`http://localhost:8000/message/getMessage/${userInfo._id}/${currentChatUser._id}`);
       dispatch({type: reducerCases.SET_MESSAGES, messages});
     }
     if(currentChatUser?._id && userInfo?._id)

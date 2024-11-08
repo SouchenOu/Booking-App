@@ -10,9 +10,10 @@ const useSignUp = () =>{
 
     const verifyCode = async (email) =>{
         try{
+            console.log("verify code");
             setError(null);
             setLoading(true);
-            const emailVerificationResult = await fetch('https://booking-app-udqo.onrender.com/auth/sendVerification', {
+            const emailVerificationResult = await fetch('http://localhost:8000/auth/sendVerification', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ newEmail: email}),
@@ -44,13 +45,14 @@ const useSignUp = () =>{
             
             const body = { ...values, verificationCode };
 
-            const res = await fetch('https://booking-app-udqo.onrender.com/auth/register', {
+            const res = await fetch('http://localhost:8000/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body),
             });
 
             const data = await res.json();
+            console.log("res-->", data);
 
             if (res.status === 200) {
                 message.success(data.message);

@@ -2,7 +2,7 @@ import React from 'react'
 import useFetch from '../../hooks/useFetch'
 
 const PropertyList = () => {
-    const {data, loading, error} = useFetch("https://booking-app-udqo.onrender.com/hotels/countByType");
+    const {data, loading, error} = useFetch("http://localhost:8000/hotels/countByType");
   return (
     <div className='flex w-full  max-w-[1800px] justify-between gap-[10px] px-[40px]'>
         { loading ? ('loading...' ) : (

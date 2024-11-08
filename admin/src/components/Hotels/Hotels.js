@@ -30,7 +30,7 @@ const Hotels = () => {
 		});
 	  };
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch('https://booking-app-udqo.onrender.com/hotels');
+  const { data, loading, error } = useFetch('http://localhost:8000/hotels');
 
   useEffect(() => {
     if (data) {
@@ -41,7 +41,7 @@ const Hotels = () => {
   const handleDelete = async (id) => {
 
     try{
-        await axios.delete('https://booking-app-udqo.onrender.com/hotels');
+        await axios.delete('http://localhost:8000/hotels');
         ToastSuccess(`Delete succefully !`);
 
     }catch(err){

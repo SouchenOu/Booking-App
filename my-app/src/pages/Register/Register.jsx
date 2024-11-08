@@ -23,6 +23,7 @@ const Register = () => {
 
     const handleClick = async (values) => {
         setEmailValue(values.email);
+        console.log("email-->", values.email);
     
         const emailVerificationResult = await verifyCode(values.email);
         if (emailVerificationResult.success === true) {
